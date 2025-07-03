@@ -898,12 +898,12 @@
 
     /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 480px) {
-      .buttons-grid {
-        grid-template-columns: 2fr;
+       .buttons-grid {
+        grid-template-columns: : repeat(2, 1fr);
       }
       
       .btn.save-contact {
-        grid-column: span 1;
+        grid-column: 1fr;
       }
       
       .logo-container {
