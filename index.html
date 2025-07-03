@@ -260,6 +260,7 @@
       margin-bottom: 20px;
     }
 
+
     .btn {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -324,7 +325,53 @@
       color: #aaa;
       margin-top: 5px;
     }
-
+/* ===== CORES PERSONALIZADAS PARA OS BOTÕES ===== */
+    .btn i.fa-whatsapp {
+      color: #25D366; /* Verde WhatsApp */
+    }
+    
+    .btn i.fa-tiktok {
+      background: linear-gradient(45deg, #FE2C55, #25F4EE);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .btn i.fa-facebook {
+      color: #1877F2; /* Azul Facebook */
+    }
+    
+    .btn i.fa-phone {
+      color: #2AABEE; /* Azul Telefone */
+    }
+    
+    .btn i.fa-qrcode {
+      color: #8A05BE; /* Roxo PIX */
+    }
+    
+    .btn i.fa-instagram {
+      color: #E1306C; /* Rosa Instagram */
+    }
+    
+    .btn i.fa-address-book {
+      color: #FF6B00; /* Laranja da Load Games */
+    }
+    
+    /* Efeito hover mantém o ícone branco */
+    .btn:hover i {
+      color: white !important;
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      background-clip: unset !important;
+    }
+    
+    /* Efeito especial para manter o degradê do TikTok no hover */
+    .btn:hover i.fa-tiktok {
+      background: linear-gradient(45deg, #FE2C55, #25F4EE) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+    }
     /* ===== WIFI ===== */
     .wifi-container {
       background: rgba(255, 255, 255, 0.05);
@@ -903,7 +950,7 @@
       }
       
       .reel-item {
-        height: 220px;
+        height: 260px;
       }
       
       .reel-thumbnail {
@@ -991,11 +1038,11 @@
     
     <div class="content">
       <div class="buttons-grid">
-        <!-- <a href="https://wa.me/551128620607" class="btn" target="_blank"> -->
-          <!-- <i class="fab fa-whatsapp"></i> -->
-          <!-- <span class="label">WhatsApp</span> -->
-          <!-- <span class="subtext">(11) 2862-0607</span> -->
-        <!-- </a> -->
+        <a href="https://wa.me/551128620607" class="btn" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          <span class="label">WhatsApp</span>
+          <span class="subtext">(11) 2862-0607</span>
+        </a>
         
         <a href="tel:+551128620607" class="btn">
           <i class="fas fa-phone"></i>
@@ -1009,11 +1056,23 @@
           <span class="subtext">CNPJ: 14.451.482/0001-00</span>
         </a>
         
-        <!-- <a href="https://www.instagram.com/loadgamesoficial/" class="btn instagram-btn" target="_blank"> -->
-          <!-- <i class="fab fa-instagram"></i> -->
-          <!-- <span class="label">Instagram</span> -->
-          <!-- <span class="subtext">@loadgamesoficial</span> -->
-        <!-- </a> -->
+        <a href="https://www.tiktok.com/loadgamesoficial/" class="btn tiktok-btn" target="_blank">
+          <i class="fab fa-tiktok"></i>
+          <span class="label">Tiktok</span>
+          <span class="subtext">@loadgamesoficial</span>
+        </a>
+		
+		 <a href="https://www.instagram.com/loadgamesoficial/" class="btn instagram-btn" target="_blank">
+          <i class="fab fa-instagram"></i>
+          <span class="label">Instagram</span>
+          <span class="subtext">@loadgamesoficial</span>
+        </a>
+		
+		 <a href="https://www.facebook.com/loadgamesoficial/" class="btn facebook-btn" target="_blank">
+          <i class="fab fa-facebook"></i>
+          <span class="label">Facebook</span>
+          <span class="subtext">@loadgamesoficial</span>
+        </a>
         
         <div class="btn save-contact" onclick="showContactCard()">
           <i class="fas fa-address-book"></i>
