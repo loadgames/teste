@@ -55,7 +55,6 @@
       background: rgba(30, 30, 30, 0.85);
       backdrop-filter: blur(10px);
       border-radius: 20px;
-      <!-- overflow: hidden; -->
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.1);
       position: relative;
@@ -96,31 +95,8 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      <!-- background:  -->
-        <!-- linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),  -->
-        <!-- url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'); -->
-      <!-- background-size: cover; -->
-      <!-- background-position: center top; -->
-      <!-- background-repeat: no-repeat; -->
-      <!-- z-index: 0; -->
     }
     
-    .header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      <!-- background: rgba(0, 0, 0, 0.4); -->
-	     linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), 
-        #333; /* Fallback color */
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-      z-index: -1;
-    }
- /* IMAGEM DE FUNDO COM AJUSTES DE POSICIONAMENTO */
     .header::after {
       content: '';
       position: absolute;
@@ -136,7 +112,7 @@
       opacity: 0.8;
     }
 	
-	/* ===== CONTAINER DA LOGO AJUSTADO ===== */
+	/* ===== CONTAINER DA LOGO ===== */
     .logo-container {
       width: 320px;
       height: 160px;
@@ -148,18 +124,6 @@
       position: relative;
       z-index: 1;
       animation: pulse 2s infinite, float 4s ease-in-out infinite;
-      <!-- background: rgba(0, 0, 0, 0.6); -->
-      <!-- border-radius: 15px; -->
-      <!-- box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); -->
-    }
-
-	/* ===== IMAGEM DA LOGO AJUSTADA ===== */
-    .logo {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .logo img {
@@ -260,7 +224,6 @@
       margin-bottom: 20px;
     }
 
-
     .btn {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -325,9 +288,10 @@
       color: #aaa;
       margin-top: 5px;
     }
-/* ===== CORES PERSONALIZADAS PARA OS BOTÕES ===== */
+
+    /* ===== CORES PERSONALIZADAS PARA OS BOTÕES ===== */
     .btn i.fa-whatsapp {
-      color: #25D366; /* Verde WhatsApp */
+      color: #25D366;
     }
     
     .btn i.fa-tiktok {
@@ -338,87 +302,34 @@
     }
     
     .btn i.fa-facebook {
-      color: #1877F2; /* Azul Facebook */
+      color: #1877F2;
     }
     
     .btn i.fa-phone {
-      color: #2AABEE; /* Azul Telefone */
+      color: #2AABEE;
     }
     
     .btn i.fa-qrcode {
-      color: #8A05BE; /* Roxo PIX */
+      color: #8A05BE;
     }
     
     .btn i.fa-instagram {
-      color: #E1306C; /* Rosa Instagram */
+      color: #E1306C;
     }
     
     .btn i.fa-address-book {
-      color: #FF6B00; /* Laranja da Load Games */
+      color: #FF6B00;
     }
     
-    /* Efeito hover mantém o ícone branco */
     .btn:hover i {
       color: white !important;
-      background: none !important;
-      -webkit-background-clip: unset !important;
-      background-clip: unset !important;
     }
     
-    /* Efeito especial para manter o degradê do TikTok no hover */
     .btn:hover i.fa-tiktok {
       background: linear-gradient(45deg, #FE2C55, #25F4EE) !important;
       -webkit-background-clip: text !important;
       background-clip: text !important;
       color: transparent !important;
-    }
-    /* ===== WIFI ===== */
-    .wifi-container {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px 0;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .wifi-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .wifi-details {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .wifi-name {
-      font-weight: 500;
-      font-size: 18px;
-      color: var(--secondary);
-    }
-
-    .wifi-password {
-      font-size: 14px;
-      color: #aaa;
-      letter-spacing: 2px;
-    }
-
-    .copy-btn {
-      background: rgba(255, 107, 0, 0.2);
-      border: none;
-      border-radius: 8px;
-      padding: 10px 15px;
-      color: var(--secondary);
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .copy-btn:hover {
-      background: var(--primary);
-      color: white;
     }
 
     /* ===== ENDEREÇOS ===== */
@@ -557,7 +468,7 @@
       color: white;
     }
 
-    /* ===== SHOWCASE DE PRODUTOS (MODIFICADO PARA INSTAGRAM) ===== */
+    /* ===== SHOWCASE DE PRODUTOS ===== */
     .product-showcase {
       margin: 25px 0;
       background: rgba(255, 255, 255, 0.05);
@@ -637,6 +548,19 @@
     .reel-thumbnail {
       height: 180px;
       border-radius: 16px 16px 0 0;
+    }
+
+    /* Garante que as imagens cubram todo o espaço */
+    .reel-thumbnail, .instagram-thumbnail {
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+
+    /* Efeito hover mais suave */
+    .reel-item:hover, .product-item:hover {
+      transform: translateY(-3px) scale(1.02);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     .instagram-overlay, .reel-overlay {
@@ -725,7 +649,6 @@
       display: flex;
       align-items: center;
       gap: 5px;
-	  
     }
 
     /* ===== INSTAGRAM REELS SECTION ===== */
@@ -899,11 +822,11 @@
     /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 480px) {
       .buttons-grid {
-        grid-template-columns: : repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
       
       .btn.save-contact {
-        grid-column: 1fr;
+        grid-column: span 2;
       }
       
       .logo-container {
@@ -1009,13 +932,7 @@
     <div class="header">
       <div class="logo-container">
         <div class="logo">
-         
-            <rect width="300" height="100" fill="#1a1a1a" rx="10" />
-
-             <img src="assets/images/logo2.png" alt="Load Games Logo">
-
-            
-         
+          <img src="assets/images/logo2.png" alt="Load Games Logo">
         </div>
       </div>
       <p class="subtitle">Consoles, acessórios e games com os melhores preços!</p>
@@ -1062,13 +979,13 @@
           <span class="subtext">@loadgamesoficial</span>
         </a>
 		
-		 <a href="https://www.instagram.com/loadgamesoficial/" class="btn instagram-btn" target="_blank">
+		<a href="https://www.instagram.com/loadgamesoficial/" class="btn instagram-btn" target="_blank">
           <i class="fab fa-instagram"></i>
           <span class="label">Instagram</span>
           <span class="subtext">@loadgamesoficial</span>
         </a>
 		
-		 <a href="https://www.facebook.com/loadgamesoficial/" class="btn facebook-btn" target="_blank">
+		<a href="https://www.facebook.com/loadgamesoficial/" class="btn facebook-btn" target="_blank">
           <i class="fab fa-facebook"></i>
           <span class="label">Facebook</span>
           <span class="subtext">@loadgamesoficial</span>
@@ -1080,20 +997,6 @@
           <span class="subtext">Todos os links em um contato</span>
         </div>
       </div>
-      
-      <!-- <div class="wifi-container"> -->
-        <!-- <div class="section-title"> -->
-          <!-- <i class="fas fa-wifi"></i> -->
-          <!-- <span>Wi-Fi do Estabelecimento</span> -->
-        <!-- </div> -->
-        <!-- <div class="wifi-info"> -->
-          <!-- <div class="wifi-details"> -->
-            <!-- <div class="wifi-name">Loadgames2g</div> -->
-            <!-- <div class="wifi-password">••••••••</div> -->
-          <!-- </div> -->
-          <!-- <button class="copy-btn" onclick="showPassword()">Mostrar Senha</button> -->
-        <!-- </div> -->
-      <!-- </div> -->
       
       <!-- ===== SEÇÃO DE REELS ===== -->
       <div class="instagram-reels">
@@ -1206,213 +1109,197 @@
   </div>
   
   <script>
-  // Dados padrão para usar como fallback caso o data.json não seja carregado
-  const defaultInstagramData = {
-    reels: [
-      {
-        title: "Novos Controles PS5 (Padrão)",
-        imageUrl: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        postUrl: "https://www.instagram.com/reel/Cg1eP6DLXJc/",
-        likes: "1.2K",
-        comments: "85",
-        position: 1
-      },
-      {
-        title: "Promoção de Jogos (Padrão)",
-        imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        postUrl: "https://www.instagram.com/reel/Cg0Kz4KjK5N/",
-        likes: "2.4K",
-        comments: "142",
-        position: 2
-      },
-      {
-        title: "Acessórios Nintendo (Padrão)",
-        imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
-        likes: "3.1K",
-        comments: "210",
-        position: 3
-      },
-      {
-        title: "Tour pela Loja (Padrão)",
-        imageUrl: "https://images.unsplash.com/photo-1607853554439-0069ec0f29b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
-        likes: "4.7K",
-        comments: "324",
-        position: 4
-      }
-    ],
-    posts: [
-      {
-        title: "Controle PS5 - Novo Estoque (Padrão)",
-        imageUrl: "https://images.unsplash.com/photo-1607853554439-0069ec0f29b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        postUrl: "https://www.instagram.com/p/Cg1eP6DLXJc/",
-        position: 1
-      },
-      {
-        title: "Promoção de Jogos PS4 (Padrão)",
-        imageUrl: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-        position: 2
-      },
-      {
-        title: "Acessórios Nintendo (Padrão)",
-        imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-        position: 3
-      },
-      {
-        title: "Nossas Lojas (Padrão)",
-        imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-        postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-        position: 4
-      }
-    ]
-  };
-
-  // Função para carregar dados do Instagram (agora tenta carregar do data.json)
-  async function loadInstagramData() {
-    const jsonFilePath = 'data.json'; // Caminho para o seu arquivo data.json
-
-    try {
-      const response = await fetch(jsonFilePath); // Faz a requisição ao arquivo
-      if (!response.ok) {
-        // Se a resposta não for OK (ex: 404 Not Found), lança um erro
-        throw new Error(`Erro ao carregar data.json: ${response.status} ${response.statusText}`);
-      }
-      const data = await response.json(); // Converte a resposta para JSON
-      localStorage.setItem('instagramData', JSON.stringify(data)); // Opcional: Salva no localStorage
-      return data;
-    } catch (error) {
-      console.error('Houve um problema ao carregar o arquivo data.json:', error);
-      // Retorna os dados padrão se houver um erro ao carregar o JSON
-      return defaultInstagramData;
+    // Configuração para GitHub Pages
+    function getBasePath() {
+      const isGitHub = window.location.host.includes('github.io');
+      return isGitHub ? /${window.location.pathname.split('/')[1]}/ : '/';
     }
-  }
 
-  // Preencher os reels na página
-  function renderReels(data) {
-    const reelsContainer = document.getElementById('reels-container');
-    if (!reelsContainer) return;
-
-    reelsContainer.innerHTML = ''; // Limpa o conteúdo atual
-
-    // Ordenar por posição
-    const sortedReels = [...data.reels].sort((a, b) => a.position - b.position);
-
-    sortedReels.forEach(reel => {
-      const reelElement = document.createElement('div');
-      reelElement.className = 'reel-item';
-      reelElement.onclick = () => window.open(reel.postUrl, '_blank');
-      reelElement.innerHTML = `
-        <div class="reel-thumbnail" style="background-image: url('${reel.imageUrl}')">
-          <div class="reel-overlay"></div>
-        </div>
-        <div class="reel-name">${reel.title}</div>
-        <div class="reel-stats">
-          <div class="reel-stat">
-            <i class="fas fa-heart"></i> ${reel.likes}
-          </div>
-          <div class="reel-stat">
-            <i class="fas fa-comment"></i> ${reel.comments}
-          </div>
-        </div>
-      `;
-      reelsContainer.appendChild(reelElement);
-    });
-  }
-
-  // Preencher as postagens na página
-  function renderPosts(data) {
-    const postsContainer = document.getElementById('posts-container');
-    if (!postsContainer) return;
-
-    postsContainer.innerHTML = ''; // Limpa o conteúdo atual
-
-    // Ordenar por posição
-    const sortedPosts = [...data.posts].sort((a, b) => a.position - b.position);
-
-    sortedPosts.forEach(post => {
-      const postElement = document.createElement('div');
-      postElement.className = 'product-item';
-      postElement.onclick = () => window.open(post.postUrl, '_blank');
-      postElement.innerHTML = `
-        <div class="instagram-thumbnail" style="background-image: url('${post.imageUrl}')">
-          <div class="instagram-overlay">
-            <i class="fab fa-instagram"></i>
-          </div>
-        </div>
-        <div class="product-name">${post.title}</div>
-      `;
-      postsContainer.appendChild(postElement);
-    });
-  }
-
-  // Funções de UI existentes (copyToClipboard, showNotification, etc.)
-  function showPassword() {
-    const passwordElement = document.querySelector('.wifi-password');
-    const button = document.querySelector('.copy-btn');
-
-    if (passwordElement.textContent === '••••••••') {
-      passwordElement.textContent = '2202122014';
-      button.textContent = 'Copiar Senha';
-    } else {
-      copyToClipboard('2202122014', 'Senha copiada!');
+    // Carregar dados do Instagram
+    function loadInstagramData() {
+      const savedData = localStorage.getItem('instagramData');
+      if (savedData) {
+        return JSON.parse(savedData);
+      }
+      
+      // Dados padrão com imagens locais
+      return {
+        reels: [
+          {
+            title: "Novos Controles PS5",
+            image: "reel1.jpg",
+            postUrl: "https://www.instagram.com/reel/Cg1eP6DLXJc/",
+            likes: "1.2K",
+            comments: "85",
+            position: 1
+          },
+          {
+            title: "Promoção de Jogos",
+            image: "reel2.jpg",
+            postUrl: "https://www.instagram.com/reel/Cg0Kz4KjK5N/",
+            likes: "2.4K",
+            comments: "142",
+            position: 2
+          },
+          {
+            title: "Acessórios Nintendo",
+            image: "reel3.jpg",
+            postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
+            likes: "3.1K",
+            comments: "210",
+            position: 3
+          },
+          {
+            title: "Tour pela Loja",
+            image: "reel4.jpg",
+            postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
+            likes: "4.7K",
+            comments: "324",
+            position: 4
+          }
+        ],
+        posts: [
+          {
+            title: "Controle PS5 - Novo Estoque",
+            image: "post1.jpg",
+            postUrl: "https://www.instagram.com/p/Cg1eP6DLXJc/",
+            position: 1
+          },
+          {
+            title: "Promoção de Jogos PS4",
+            image: "post2.jpg",
+            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+            position: 2
+          },
+          {
+            title: "Acessórios Nintendo",
+            image: "post3.jpg",
+            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+            position: 3
+          },
+          {
+            title: "Nossas Lojas",
+            image: "post4.jpg",
+            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+            position: 4
+          }
+        ]
+      };
     }
-  }
 
-  function copyToClipboard(text, message) {
-    navigator.clipboard.writeText(text).then(() => {
-      showNotification(message);
-    });
-  }
+    // Preencher os reels na página
+    function renderReels() {
+      const data = loadInstagramData();
+      const reelsContainer = document.getElementById('reels-container');
+      const basePath = getBasePath();
+      
+      if (!reelsContainer) return;
+      
+      reelsContainer.innerHTML = '';
+      
+      const sortedReels = [...data.reels].sort((a, b) => a.position - b.position);
+      
+      sortedReels.forEach(reel => {
+        const reelElement = document.createElement('div');
+        reelElement.className = 'reel-item';
+        reelElement.onclick = () => window.open(reel.postUrl, '_blank');
+        reelElement.innerHTML = `
+          <div class="reel-thumbnail" 
+               style="background-image: url('${basePath}assets/images/reels/${reel.image}')">
+            <div class="reel-overlay"></div>
+          </div>
+          <div class="reel-name">${reel.title}</div>
+          <div class="reel-stats">
+            <div class="reel-stat">
+              <i class="fas fa-heart"></i> ${reel.likes}
+            </div>
+            <div class="reel-stat">
+              <i class="fas fa-comment"></i> ${reel.comments}
+            </div>
+          </div>
+        `;
+        reelsContainer.appendChild(reelElement);
+      });
+    }
 
-  function showNotification(message) {
-    const notification = document.getElementById('notification');
-    notification.textContent = message;
-    notification.classList.add('show');
+    // Preencher as postagens na página
+    function renderPosts() {
+      const data = loadInstagramData();
+      const postsContainer = document.getElementById('posts-container');
+      const basePath = getBasePath();
+      
+      if (!postsContainer) return;
+      
+      postsContainer.innerHTML = '';
+      
+      const sortedPosts = [...data.posts].sort((a, b) => a.position - b.position);
+      
+      sortedPosts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.className = 'product-item';
+        postElement.onclick = () => window.open(post.postUrl, '_blank');
+        postElement.innerHTML = `
+          <div class="instagram-thumbnail" 
+               style="background-image: url('${basePath}assets/images/posts/${post.image}')">
+            <div class="instagram-overlay">
+              <i class="fab fa-instagram"></i>
+            </div>
+          </div>
+          <div class="product-name">${post.title}</div>
+        `;
+        postsContainer.appendChild(postElement);
+      });
+    }
 
-    setTimeout(() => {
-      notification.classList.remove('show');
-    }, 3000);
-  }
-
-  function showContactCard() {
-    document.getElementById('contactCard').classList.add('show');
-  }
-
-  function hideContactCard() {
-    document.getElementById('contactCard').classList.remove('show');
-  }
-
-  function saveContact() {
-    showNotification('Contato salvo com sucesso!');
-    setTimeout(hideContactCard, 1500);
-  }
-
-  document.querySelectorAll('.address-item').forEach(item => {
-    item.addEventListener('click', function() {
-      this.style.transform = 'scale(0.98)';
-      setTimeout(() => {
-        this.style.transform = '';
-      }, 200);
-    });
-  });
-
-  // Inicializar quando a página carregar
-  window.addEventListener('DOMContentLoaded', async function() {
-    const notification = document.getElementById('notification');
-    if (notification) { // Verifica se o elemento existe antes de manipulá-lo
-      notification.classList.remove('show');
+    // Funções de utilitário
+    function copyToClipboard(text, message) {
+      navigator.clipboard.writeText(text).then(() => {
+        showNotification(message);
+      });
     }
     
-    // Carregar os dados do Instagram (tentando do JSON, com fallback)
-    const instagramData = await loadInstagramData();
-
-    // Renderizar os elementos na página com os dados carregados
-    renderReels(instagramData);
-    renderPosts(instagramData);
-  });
-</script>
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+    
+    function showContactCard() {
+      document.getElementById('contactCard').classList.add('show');
+    }
+    
+    function hideContactCard() {
+      document.getElementById('contactCard').classList.remove('show');
+    }
+    
+    function saveContact() {
+      showNotification('Contato salvo com sucesso!');
+      setTimeout(hideContactCard, 1500);
+    }
+    
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+      // Esconder notificação inicial
+      document.getElementById('notification').classList.remove('show');
+      
+      // Carregar e renderizar dados
+      renderReels();
+      renderPosts();
+      
+      // Efeito nos itens de endereço
+      document.querySelectorAll('.address-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 200);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
