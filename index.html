@@ -898,7 +898,7 @@
 
     /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 480px) {
-       .buttons-grid {
+      .buttons-grid {
         grid-template-columns: : repeat(2, 1fr);
       }
       
@@ -1081,19 +1081,19 @@
         </div>
       </div>
       
-      <div class="wifi-container">
-        <div class="section-title">
-          <i class="fas fa-wifi"></i>
-          <span>Wi-Fi do Estabelecimento</span>
-        </div>
-        <div class="wifi-info">
-          <div class="wifi-details">
-            <div class="wifi-name">Loadgames2g</div>
-            <div class="wifi-password">••••••••</div>
-          </div>
-          <button class="copy-btn" onclick="showPassword()">Mostrar Senha</button>
-        </div>
-      </div>
+      <!-- <div class="wifi-container"> -->
+        <!-- <div class="section-title"> -->
+          <!-- <i class="fas fa-wifi"></i> -->
+          <!-- <span>Wi-Fi do Estabelecimento</span> -->
+        <!-- </div> -->
+        <!-- <div class="wifi-info"> -->
+          <!-- <div class="wifi-details"> -->
+            <!-- <div class="wifi-name">Loadgames2g</div> -->
+            <!-- <div class="wifi-password">••••••••</div> -->
+          <!-- </div> -->
+          <!-- <button class="copy-btn" onclick="showPassword()">Mostrar Senha</button> -->
+        <!-- </div> -->
+      <!-- </div> -->
       
       <!-- ===== SEÇÃO DE REELS ===== -->
       <div class="instagram-reels">
@@ -1208,8 +1208,7 @@
   <script>
     // Carregar dados do Instagram
     function loadInstagramData() {
-	    const savedData = url('data.json');
-      
+      const savedData = localStorage.getItem('instagramData');
       if (savedData) {
         return JSON.parse(savedData);
       }
