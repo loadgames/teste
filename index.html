@@ -1161,27 +1161,10 @@
   
   <script>
     // Configuração dinâmica do caminho do JSON
-    function getBasePath() {
-      const isGitHub = window.location.host.includes('github.io');
-      if (isGitHub) {
-        const repoName = window.location.pathname.split('/')[1];
-        return /${repoName}/;
-      }
-      return '/';
-    }
+  
 
     // Função para buscar dados do Instagram
-    async function fetchInstagramData() {
-      try {
-        const basePath = getBasePath();
-        const response = await fetch(${basePath}data.json);
-        if (!response.ok) throw new Error("Arquivo não encontrado");
-        return await response.json();
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-        return null;
-      }
-    }
+  
 
     // Carregar dados do Instagram
     async function loadInstagramData() {
