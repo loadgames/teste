@@ -1163,17 +1163,7 @@
     // Configuração dinâmica do caminho do JSON
   
 
-    // Função para buscar dados do Instagram
-  
-
-    // Carregar dados do Instagram
-    async function loadInstagramData() {
-      // Tenta buscar dados atualizados do servidor
-      const freshData = await fetchInstagramData();
-      if (freshData) {
-        localStorage.setItem('instagramData', JSON.stringify(freshData));
-        return freshData;
-      }
+    
       
       // Fallback para localStorage
       const savedData = localStorage.getItem('instagramData');
