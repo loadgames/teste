@@ -55,7 +55,6 @@
       background: rgba(30, 30, 30, 0.85);
       backdrop-filter: blur(10px);
       border-radius: 20px;
-      <!-- overflow: hidden; -->
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.1);
       position: relative;
@@ -96,31 +95,9 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      <!-- background:  -->
-        <!-- linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),  -->
-        <!-- url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'); -->
-      <!-- background-size: cover; -->
-      <!-- background-position: center top; -->
-      <!-- background-repeat: no-repeat; -->
-      <!-- z-index: 0; -->
     }
     
-    .header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      <!-- background: rgba(0, 0, 0, 0.4); -->
-	     linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), 
-        #333; /* Fallback color */
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-      z-index: -1;
-    }
- /* IMAGEM DE FUNDO COM AJUSTES DE POSICIONAMENTO */
+    /* IMAGEM DE FUNDO COM AJUSTES DE POSICIONAMENTO */
     .header::after {
       content: '';
       position: absolute;
@@ -148,9 +125,6 @@
       position: relative;
       z-index: 1;
       animation: pulse 2s infinite, float 4s ease-in-out infinite;
-      <!-- background: rgba(0, 0, 0, 0.6); -->
-      <!-- border-radius: 15px; -->
-      <!-- box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); -->
     }
 
 	/* ===== IMAGEM DA LOGO AJUSTADA ===== */
@@ -899,11 +873,11 @@
     /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 480px) {
       .buttons-grid {
-        grid-template-columns: : repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
       
       .btn.save-contact {
-        grid-column: 1fr;
+        grid-column: span 2;
       }
       
       .logo-container {
@@ -1009,13 +983,7 @@
     <div class="header">
       <div class="logo-container">
         <div class="logo">
-         
-            <rect width="300" height="100" fill="#1a1a1a" rx="10" />
-
-             <img src="assets/images/logo2.png" alt="Load Games Logo">
-
-            
-         
+          <img src="assets/images/logo2.png" alt="Load Games Logo">
         </div>
       </div>
       <p class="subtitle">Consoles, acessórios e games com os melhores preços!</p>
@@ -1080,20 +1048,6 @@
           <span class="subtext">Todos os links em um contato</span>
         </div>
       </div>
-      
-      <!-- <div class="wifi-container"> -->
-        <!-- <div class="section-title"> -->
-          <!-- <i class="fas fa-wifi"></i> -->
-          <!-- <span>Wi-Fi do Estabelecimento</span> -->
-        <!-- </div> -->
-        <!-- <div class="wifi-info"> -->
-          <!-- <div class="wifi-details"> -->
-            <!-- <div class="wifi-name">Loadgames2g</div> -->
-            <!-- <div class="wifi-password">••••••••</div> -->
-          <!-- </div> -->
-          <!-- <button class="copy-btn" onclick="showPassword()">Mostrar Senha</button> -->
-        <!-- </div> -->
-      <!-- </div> -->
       
       <!-- ===== SEÇÃO DE REELS ===== -->
       <div class="instagram-reels">
@@ -1206,14 +1160,45 @@
   </div>
   
   <script>
+    // Configuração dinâmica do caminho do JSON
+    function getBasePath() {
+      const isGitHub = window.location.host.includes('github.io');
+      if (isGitHub) {
+        const repoName = window.location.pathname.split('/')[1];
+        return /${repoName}/;
+      }
+      return '/';
+    }
+
+    // Função para buscar dados do Instagram
+    async function fetchInstagramData() {
+      try {
+        const basePath = getBasePath();
+        const response = await fetch(${basePath}data.json);
+        if (!response.ok) throw new Error("Arquivo não encontrado");
+        return await response.json();
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+        return null;
+      }
+    }
+
     // Carregar dados do Instagram
-    function loadInstagramData() {
+    async function loadInstagramData() {
+      // Tenta buscar dados atualizados do servidor
+      const freshData = await fetchInstagramData();
+      if (freshData) {
+        localStorage.setItem('instagramData', JSON.stringify(freshData));
+        return freshData;
+      }
+      
+      // Fallback para localStorage
       const savedData = localStorage.getItem('instagramData');
       if (savedData) {
         return JSON.parse(savedData);
       }
       
-      // Dados padrão caso não haja dados salvos
+      // Fallback para dados padrão
       return {
         reels: [
           {
@@ -1279,8 +1264,8 @@
     }
 
     // Preencher os reels na página
-    function renderReels() {
-      const data = loadInstagramData();
+    async function renderReels() {
+      const data = await loadInstagramData();
       const reelsContainer = document.getElementById('reels-container');
       
       if (!reelsContainer) return;
@@ -1313,8 +1298,8 @@
     }
 
     // Preencher as postagens na página
-    function renderPosts() {
-      const data = loadInstagramData();
+    async function renderPosts() {
+      const data = await loadInstagramData();
       const postsContainer = document.getElementById('posts-container');
       
       if (!postsContainer) return;
@@ -1392,13 +1377,13 @@
     });
     
     // Inicializar quando a página carregar
-    window.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('DOMContentLoaded', async function() {
       const notification = document.getElementById('notification');
       notification.classList.remove('show');
       
       // Carregar e renderizar dados do Instagram
-      renderReels();
-      renderPosts();
+      await renderReels();
+      await renderPosts();
     });
   </script>
 </body>
