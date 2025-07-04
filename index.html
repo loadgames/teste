@@ -1208,7 +1208,8 @@
   <script>
     // Carregar dados do Instagram
     function loadInstagramData() {
-      const savedData = localStorage.getItem('instagramData');
+	    const savedData = url('data.json');
+      
       if (savedData) {
         return JSON.parse(savedData);
       }
