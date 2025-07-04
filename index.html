@@ -55,6 +55,7 @@
       background: rgba(30, 30, 30, 0.85);
       backdrop-filter: blur(10px);
       border-radius: 20px;
+      <!-- overflow: hidden; -->
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.1);
       position: relative;
@@ -95,9 +96,31 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      <!-- background:  -->
+        <!-- linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),  -->
+        <!-- url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'); -->
+      <!-- background-size: cover; -->
+      <!-- background-position: center top; -->
+      <!-- background-repeat: no-repeat; -->
+      <!-- z-index: 0; -->
     }
     
-    /* IMAGEM DE FUNDO COM AJUSTES DE POSICIONAMENTO */
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      <!-- background: rgba(0, 0, 0, 0.4); -->
+	     linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), 
+        #333; /* Fallback color */
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+ /* IMAGEM DE FUNDO COM AJUSTES DE POSICIONAMENTO */
     .header::after {
       content: '';
       position: absolute;
@@ -125,6 +148,9 @@
       position: relative;
       z-index: 1;
       animation: pulse 2s infinite, float 4s ease-in-out infinite;
+      <!-- background: rgba(0, 0, 0, 0.6); -->
+      <!-- border-radius: 15px; -->
+      <!-- box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); -->
     }
 
 	/* ===== IMAGEM DA LOGO AJUSTADA ===== */
@@ -873,11 +899,11 @@
     /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 480px) {
       .buttons-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: : repeat(2, 1fr);
       }
       
       .btn.save-contact {
-        grid-column: span 2;
+        grid-column: 1fr;
       }
       
       .logo-container {
@@ -983,7 +1009,13 @@
     <div class="header">
       <div class="logo-container">
         <div class="logo">
-          <img src="assets/images/logo2.png" alt="Load Games Logo">
+         
+            <rect width="300" height="100" fill="#1a1a1a" rx="10" />
+
+             <img src="assets/images/logo2.png" alt="Load Games Logo">
+
+            
+         
         </div>
       </div>
       <p class="subtitle">Consoles, acessórios e games com os melhores preços!</p>
@@ -1048,6 +1080,20 @@
           <span class="subtext">Todos os links em um contato</span>
         </div>
       </div>
+      
+      <!-- <div class="wifi-container"> -->
+        <!-- <div class="section-title"> -->
+          <!-- <i class="fas fa-wifi"></i> -->
+          <!-- <span>Wi-Fi do Estabelecimento</span> -->
+        <!-- </div> -->
+        <!-- <div class="wifi-info"> -->
+          <!-- <div class="wifi-details"> -->
+            <!-- <div class="wifi-name">Loadgames2g</div> -->
+            <!-- <div class="wifi-password">••••••••</div> -->
+          <!-- </div> -->
+          <!-- <button class="copy-btn" onclick="showPassword()">Mostrar Senha</button> -->
+        <!-- </div> -->
+      <!-- </div> -->
       
       <!-- ===== SEÇÃO DE REELS ===== -->
       <div class="instagram-reels">
@@ -1160,204 +1206,213 @@
   </div>
   
   <script>
-    // Configuração dinâmica do caminho do JSON
-  
-
-    
-      
-      // Fallback para localStorage
-      const savedData = localStorage.getItem('instagramData');
-      if (savedData) {
-        return JSON.parse(savedData);
+  // Dados padrão para usar como fallback caso o data.json não seja carregado
+  const defaultInstagramData = {
+    reels: [
+      {
+        title: "Novos Controles PS5 (Padrão)",
+        imageUrl: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        postUrl: "https://www.instagram.com/reel/Cg1eP6DLXJc/",
+        likes: "1.2K",
+        comments: "85",
+        position: 1
+      },
+      {
+        title: "Promoção de Jogos (Padrão)",
+        imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        postUrl: "https://www.instagram.com/reel/Cg0Kz4KjK5N/",
+        likes: "2.4K",
+        comments: "142",
+        position: 2
+      },
+      {
+        title: "Acessórios Nintendo (Padrão)",
+        imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
+        likes: "3.1K",
+        comments: "210",
+        position: 3
+      },
+      {
+        title: "Tour pela Loja (Padrão)",
+        imageUrl: "https://images.unsplash.com/photo-1607853554439-0069ec0f29b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
+        likes: "4.7K",
+        comments: "324",
+        position: 4
       }
-      
-      // Fallback para dados padrão
-      return {
-        reels: [
-          {
-            title: "Novos Controles PS5",
-            imageUrl: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-            postUrl: "https://www.instagram.com/reel/Cg1eP6DLXJc/",
-            likes: "1.2K",
-            comments: "85",
-            position: 1
-          },
-          {
-            title: "Promoção de Jogos",
-            imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-            postUrl: "https://www.instagram.com/reel/Cg0Kz4KjK5N/",
-            likes: "2.4K",
-            comments: "142",
-            position: 2
-          },
-          {
-            title: "Acessórios Nintendo",
-            imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-            postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
-            likes: "3.1K",
-            comments: "210",
-            position: 3
-          },
-          {
-            title: "Tour pela Loja",
-            imageUrl: "https://images.unsplash.com/photo-1607853554439-0069ec0f29b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-            postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
-            likes: "4.7K",
-            comments: "324",
-            position: 4
-          }
-        ],
-        posts: [
-          {
-            title: "Controle PS5 - Novo Estoque",
-            imageUrl: "https://images.unsplash.com/photo-1607853554439-0069ec0f29b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-            postUrl: "https://www.instagram.com/p/Cg1eP6DLXJc/",
-            position: 1
-          },
-          {
-            title: "Promoção de Jogos PS4",
-            imageUrl: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-            position: 2
-          },
-          {
-            title: "Acessórios Nintendo",
-            imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-            position: 3
-          },
-          {
-            title: "Nossas Lojas",
-            imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-            position: 4
-          }
-        ]
-      };
-    }
-
-    // Preencher os reels na página
-    async function renderReels() {
-      const data = await loadInstagramData();
-      const reelsContainer = document.getElementById('reels-container');
-      
-      if (!reelsContainer) return;
-      
-      reelsContainer.innerHTML = '';
-      
-      // Ordenar por posição
-      const sortedReels = [...data.reels].sort((a, b) => a.position - b.position);
-      
-      sortedReels.forEach(reel => {
-        const reelElement = document.createElement('div');
-        reelElement.className = 'reel-item';
-        reelElement.onclick = () => window.open(reel.postUrl, '_blank');
-        reelElement.innerHTML = `
-          <div class="reel-thumbnail" style="background-image: url('${reel.imageUrl}')">
-            <div class="reel-overlay"></div>
-          </div>
-          <div class="reel-name">${reel.title}</div>
-          <div class="reel-stats">
-            <div class="reel-stat">
-              <i class="fas fa-heart"></i> ${reel.likes}
-            </div>
-            <div class="reel-stat">
-              <i class="fas fa-comment"></i> ${reel.comments}
-            </div>
-          </div>
-        `;
-        reelsContainer.appendChild(reelElement);
-      });
-    }
-
-    // Preencher as postagens na página
-    async function renderPosts() {
-      const data = await loadInstagramData();
-      const postsContainer = document.getElementById('posts-container');
-      
-      if (!postsContainer) return;
-      
-      postsContainer.innerHTML = '';
-      
-      // Ordenar por posição
-      const sortedPosts = [...data.posts].sort((a, b) => a.position - b.position);
-      
-      sortedPosts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.className = 'product-item';
-        postElement.onclick = () => window.open(post.postUrl, '_blank');
-        postElement.innerHTML = `
-          <div class="instagram-thumbnail" style="background-image: url('${post.imageUrl}')">
-            <div class="instagram-overlay">
-              <i class="fab fa-instagram"></i>
-            </div>
-          </div>
-          <div class="product-name">${post.title}</div>
-        `;
-        postsContainer.appendChild(postElement);
-      });
-    }
-
-    // Funções existentes
-    function showPassword() {
-      const passwordElement = document.querySelector('.wifi-password');
-      const button = document.querySelector('.copy-btn');
-      
-      if (passwordElement.textContent === '••••••••') {
-        passwordElement.textContent = '2202122014';
-        button.textContent = 'Copiar Senha';
-      } else {
-        copyToClipboard('2202122014', 'Senha copiada!');
+    ],
+    posts: [
+      {
+        title: "Controle PS5 - Novo Estoque (Padrão)",
+        imageUrl: "https://images.unsplash.com/photo-1607853554439-0069ec0f29b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        postUrl: "https://www.instagram.com/p/Cg1eP6DLXJc/",
+        position: 1
+      },
+      {
+        title: "Promoção de Jogos PS4 (Padrão)",
+        imageUrl: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+        position: 2
+      },
+      {
+        title: "Acessórios Nintendo (Padrão)",
+        imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+        position: 3
+      },
+      {
+        title: "Nossas Lojas (Padrão)",
+        imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+        position: 4
       }
+    ]
+  };
+
+  // Função para carregar dados do Instagram (agora tenta carregar do data.json)
+  async function loadInstagramData() {
+    const jsonFilePath = 'data.json'; // Caminho para o seu arquivo data.json
+
+    try {
+      const response = await fetch(jsonFilePath); // Faz a requisição ao arquivo
+      if (!response.ok) {
+        // Se a resposta não for OK (ex: 404 Not Found), lança um erro
+        throw new Error(`Erro ao carregar data.json: ${response.status} ${response.statusText}`);
+      }
+      const data = await response.json(); // Converte a resposta para JSON
+      localStorage.setItem('instagramData', JSON.stringify(data)); // Opcional: Salva no localStorage
+      return data;
+    } catch (error) {
+      console.error('Houve um problema ao carregar o arquivo data.json:', error);
+      // Retorna os dados padrão se houver um erro ao carregar o JSON
+      return defaultInstagramData;
     }
-    
-    function copyToClipboard(text, message) {
-      navigator.clipboard.writeText(text).then(() => {
-        showNotification(message);
-      });
-    }
-    
-    function showNotification(message) {
-      const notification = document.getElementById('notification');
-      notification.textContent = message;
-      notification.classList.add('show');
-      
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 3000);
-    }
-    
-    function showContactCard() {
-      document.getElementById('contactCard').classList.add('show');
-    }
-    
-    function hideContactCard() {
-      document.getElementById('contactCard').classList.remove('show');
-    }
-    
-    function saveContact() {
-      showNotification('Contato salvo com sucesso!');
-      setTimeout(hideContactCard, 1500);
-    }
-    
-    document.querySelectorAll('.address-item').forEach(item => {
-      item.addEventListener('click', function() {
-        this.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-          this.style.transform = '';
-        }, 200);
-      });
+  }
+
+  // Preencher os reels na página
+  function renderReels(data) {
+    const reelsContainer = document.getElementById('reels-container');
+    if (!reelsContainer) return;
+
+    reelsContainer.innerHTML = ''; // Limpa o conteúdo atual
+
+    // Ordenar por posição
+    const sortedReels = [...data.reels].sort((a, b) => a.position - b.position);
+
+    sortedReels.forEach(reel => {
+      const reelElement = document.createElement('div');
+      reelElement.className = 'reel-item';
+      reelElement.onclick = () => window.open(reel.postUrl, '_blank');
+      reelElement.innerHTML = `
+        <div class="reel-thumbnail" style="background-image: url('${reel.imageUrl}')">
+          <div class="reel-overlay"></div>
+        </div>
+        <div class="reel-name">${reel.title}</div>
+        <div class="reel-stats">
+          <div class="reel-stat">
+            <i class="fas fa-heart"></i> ${reel.likes}
+          </div>
+          <div class="reel-stat">
+            <i class="fas fa-comment"></i> ${reel.comments}
+          </div>
+        </div>
+      `;
+      reelsContainer.appendChild(reelElement);
     });
-    
-    // Inicializar quando a página carregar
-    window.addEventListener('DOMContentLoaded', async function() {
-      const notification = document.getElementById('notification');
+  }
+
+  // Preencher as postagens na página
+  function renderPosts(data) {
+    const postsContainer = document.getElementById('posts-container');
+    if (!postsContainer) return;
+
+    postsContainer.innerHTML = ''; // Limpa o conteúdo atual
+
+    // Ordenar por posição
+    const sortedPosts = [...data.posts].sort((a, b) => a.position - b.position);
+
+    sortedPosts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.className = 'product-item';
+      postElement.onclick = () => window.open(post.postUrl, '_blank');
+      postElement.innerHTML = `
+        <div class="instagram-thumbnail" style="background-image: url('${post.imageUrl}')">
+          <div class="instagram-overlay">
+            <i class="fab fa-instagram"></i>
+          </div>
+        </div>
+        <div class="product-name">${post.title}</div>
+      `;
+      postsContainer.appendChild(postElement);
+    });
+  }
+
+  // Funções de UI existentes (copyToClipboard, showNotification, etc.)
+  function showPassword() {
+    const passwordElement = document.querySelector('.wifi-password');
+    const button = document.querySelector('.copy-btn');
+
+    if (passwordElement.textContent === '••••••••') {
+      passwordElement.textContent = '2202122014';
+      button.textContent = 'Copiar Senha';
+    } else {
+      copyToClipboard('2202122014', 'Senha copiada!');
+    }
+  }
+
+  function copyToClipboard(text, message) {
+    navigator.clipboard.writeText(text).then(() => {
+      showNotification(message);
+    });
+  }
+
+  function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.classList.add('show');
+
+    setTimeout(() => {
       notification.classList.remove('show');
-      
-      // Carregar e renderizar dados do Instagram
-      await renderReels();
-      await renderPosts();
+    }, 3000);
+  }
+
+  function showContactCard() {
+    document.getElementById('contactCard').classList.add('show');
+  }
+
+  function hideContactCard() {
+    document.getElementById('contactCard').classList.remove('show');
+  }
+
+  function saveContact() {
+    showNotification('Contato salvo com sucesso!');
+    setTimeout(hideContactCard, 1500);
+  }
+
+  document.querySelectorAll('.address-item').forEach(item => {
+    item.addEventListener('click', function() {
+      this.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 200);
     });
-  </script>
+  });
+
+  // Inicializar quando a página carregar
+  window.addEventListener('DOMContentLoaded', async function() {
+    const notification = document.getElementById('notification');
+    if (notification) { // Verifica se o elemento existe antes de manipulá-lo
+      notification.classList.remove('show');
+    }
+    
+    // Carregar os dados do Instagram (tentando do JSON, com fallback)
+    const instagramData = await loadInstagramData();
+
+    // Renderizar os elementos na página com os dados carregados
+    renderReels(instagramData);
+    renderPosts(instagramData);
+  });
+</script>
 </body>
 </html>
