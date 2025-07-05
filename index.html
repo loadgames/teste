@@ -1109,197 +1109,213 @@
   </div>
   
   <script>
-    // Configuração para GitHub Pages
+    // Configuração para GitHub Pages - CORRIGIDO
     function getBasePath() {
-  const isGitHub = window.location.host.includes('github.io');
-      return isGitHub ? `/${window.location.pathname.split('/')[1]}/` : '/';
+        const isGitHub = window.location.host.includes('github.io');
+        return isGitHub ? /${window.location.pathname.split('/')[1]}/ : '/';
     }
 
-    // Carregar dados do Instagram
-    function loadInstagramData() {
-      const savedData = localStorage.getItem('instagramData');
-      if (savedData) {
-        return JSON.parse(savedData);
-      }
-      
-      // Dados padrão com imagens locais
-      return {
-        reels: [
-          {
-            title: "Novos Controles PS5",
-            image: "reel1.jpg",
-            postUrl: "https://www.instagram.com/reel/Cg1eP6DLXJc/",
-            likes: "1.2K",
-            comments: "85",
-            position: 1
-          },
-          {
-            title: "Promoção de Jogos",
-            image: "reel2.jpg",
-            postUrl: "https://www.instagram.com/reel/Cg0Kz4KjK5N/",
-            likes: "2.4K",
-            comments: "142",
-            position: 2
-          },
-          {
-            title: "Acessórios Nintendo",
-            image: "reel3.jpg",
-            postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
-            likes: "3.1K",
-            comments: "210",
-            position: 3
-          },
-          {
-            title: "Tour pela Loja",
-            image: "reel4.jpg",
-            postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
-            likes: "4.7K",
-            comments: "324",
-            position: 4
-          }
-        ],
-        posts: [
-          {
-            title: "Controle PS5 - Novo Estoque",
-            image: "post1.jpg",
-            postUrl: "https://www.instagram.com/p/Cg1eP6DLXJc/",
-            position: 1
-          },
-          {
-            title: "Promoção de Jogos PS4",
-            image: "post2.jpg",
-            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-            position: 2
-          },
-          {
-            title: "Acessórios Nintendo",
-            image: "post3.jpg",
-            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-            position: 3
-          },
-          {
-            title: "Nossas Lojas",
-            image: "post4.jpg",
-            postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-            position: 4
-          }
-        ]
-      };
+    // Carregar dados do Instagram - CORRIGIDO
+    async function loadInstagramData() {
+        try {
+            // Tentar carregar do data.json
+            const basePath = getBasePath();
+            const response = await fetch(${basePath}data.json);
+            
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (e) {
+            console.log("Usando fallback para localStorage");
+        }
+        
+        // Fallback para localStorage
+        const savedData = localStorage.getItem('instagramData');
+        if (savedData) {
+            return JSON.parse(savedData);
+        }
+        
+        // Fallback para dados padrão
+        return {
+            reels: [
+                {
+                    title: "Novos Controles PS5",
+                    image: "reel1.jpg",
+                    postUrl: "https://www.instagram.com/reel/Cg1eP6DLXJc/",
+                    likes: "1.2K",
+                    comments: "85",
+                    position: 1
+                },
+                {
+                    title: "Promoção de Jogos",
+                    image: "reel2.jpg",
+                    postUrl: "https://www.instagram.com/reel/Cg0Kz4KjK5N/",
+                    likes: "2.4K",
+                    comments: "142",
+                    position: 2
+                },
+                {
+                    title: "Acessórios Nintendo",
+                    image: "reel3.jpg",
+                    postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
+                    likes: "3.1K",
+                    comments: "210",
+                    position: 3
+                },
+                {
+                    title: "Tour pela Loja",
+                    image: "reel4.jpg",
+                    postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
+                    likes: "4.7K",
+                    comments: "324",
+                    position: 4
+                }
+            ],
+            posts: [
+                {
+                    title: "Controle PS5 - Novo Estoque",
+                    image: "post1.jpg",
+                    postUrl: "https://www.instagram.com/p/Cg1eP6DLXJc/",
+                    position: 1
+                },
+                {
+                    title: "Promoção de Jogos PS4",
+                    image: "post2.jpg",
+                    postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+                    position: 2
+                },
+                {
+                    title: "Acessórios Nintendo",
+                    image: "post3.jpg",
+                    postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+                    position: 3
+                },
+                {
+                    title: "Nossas Lojas",
+                    image: "post4.jpg",
+                    postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+                    position: 4
+                }
+            ]
+        };
     }
 
-    // Preencher os reels na página
-    function renderReels() {
-      const data = loadInstagramData();
-      const reelsContainer = document.getElementById('reels-container');
-      const basePath = getBasePath();
-      
-      if (!reelsContainer) return;
-      
-      reelsContainer.innerHTML = '';
-      
-      const sortedReels = [...data.reels].sort((a, b) => a.position - b.position);
-      
-      sortedReels.forEach(reel => {
-        const reelElement = document.createElement('div');
-        reelElement.className = 'reel-item';
-        reelElement.onclick = () => window.open(reel.postUrl, '_blank');
-        reelElement.innerHTML = `
-          <div class="reel-thumbnail" 
-               style="background-image: url('${basePath}assets/images/reels/${reel.image}')">
-            <div class="reel-overlay"></div>
-          </div>
-          <div class="reel-name">${reel.title}</div>
-          <div class="reel-stats">
-            <div class="reel-stat">
-              <i class="fas fa-heart"></i> ${reel.likes}
-            </div>
-            <div class="reel-stat">
-              <i class="fas fa-comment"></i> ${reel.comments}
-            </div>
-          </div>
-        `;
-        reelsContainer.appendChild(reelElement);
-      });
+    // Preencher os reels na página - CORRIGIDO
+    async function renderReels() {
+        const data = await loadInstagramData();
+        const reelsContainer = document.getElementById('reels-container');
+        const basePath = getBasePath();
+        
+        if (!reelsContainer) return;
+        
+        reelsContainer.innerHTML = '';
+        
+        const sortedReels = [...data.reels].sort((a, b) => a.position - b.position);
+        
+        sortedReels.forEach(reel => {
+            const reelElement = document.createElement('div');
+            reelElement.className = 'reel-item';
+            reelElement.onclick = () => window.open(reel.postUrl, '_blank');
+            reelElement.innerHTML = `
+                <div class="reel-thumbnail" 
+                     style="background-image: url('${basePath}assets/images/reels/${reel.image}')">
+                    <div class="reel-overlay"></div>
+                </div>
+                <div class="reel-name">${reel.title}</div>
+                <div class="reel-stats">
+                    <div class="reel-stat">
+                        <i class="fas fa-heart"></i> ${reel.likes}
+                    </div>
+                    <div class="reel-stat">
+                        <i class="fas fa-comment"></i> ${reel.comments}
+                    </div>
+                </div>
+            `;
+            reelsContainer.appendChild(reelElement);
+        });
     }
 
-    // Preencher as postagens na página
-    function renderPosts() {
-      const data = loadInstagramData();
-      const postsContainer = document.getElementById('posts-container');
-      const basePath = getBasePath();
-      
-      if (!postsContainer) return;
-      
-      postsContainer.innerHTML = '';
-      
-      const sortedPosts = [...data.posts].sort((a, b) => a.position - b.position);
-      
-      sortedPosts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.className = 'product-item';
-        postElement.onclick = () => window.open(post.postUrl, '_blank');
-        postElement.innerHTML = `
-          <div class="instagram-thumbnail" 
-               style="background-image: url('${basePath}assets/images/posts/${post.image}')">
-            <div class="instagram-overlay">
-              <i class="fab fa-instagram"></i>
-            </div>
-          </div>
-          <div class="product-name">${post.title}</div>
-        `;
-        postsContainer.appendChild(postElement);
-      });
+    // Preencher as postagens na página - CORRIGIDO
+    async function renderPosts() {
+        const data = await loadInstagramData();
+        const postsContainer = document.getElementById('posts-container');
+        const basePath = getBasePath();
+        
+        if (!postsContainer) return;
+        
+        postsContainer.innerHTML = '';
+        
+        const sortedPosts = [...data.posts].sort((a, b) => a.position - b.position);
+        
+        sortedPosts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.className = 'product-item';
+            postElement.onclick = () => window.open(post.postUrl, '_blank');
+            postElement.innerHTML = `
+                <div class="instagram-thumbnail" 
+                     style="background-image: url('${basePath}assets/images/posts/${post.image}')">
+                    <div class="instagram-overlay">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="product-name">${post.title}</div>
+            `;
+            postsContainer.appendChild(postElement);
+        });
     }
 
-    // Funções de utilitário
+    // Funções de utilitário (mantidas iguais)
     function copyToClipboard(text, message) {
-      navigator.clipboard.writeText(text).then(() => {
-        showNotification(message);
-      });
+        navigator.clipboard.writeText(text).then(() => {
+            showNotification(message);
+        });
     }
     
     function showNotification(message) {
-      const notification = document.getElementById('notification');
-      notification.textContent = message;
-      notification.classList.add('show');
-      
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 3000);
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.classList.add('show');
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
     }
     
     function showContactCard() {
-      document.getElementById('contactCard').classList.add('show');
+        document.getElementById('contactCard').classList.add('show');
     }
     
     function hideContactCard() {
-      document.getElementById('contactCard').classList.remove('show');
+        document.getElementById('contactCard').classList.remove('show');
     }
     
     function saveContact() {
-      showNotification('Contato salvo com sucesso!');
-      setTimeout(hideContactCard, 1500);
+        showNotification('Contato salvo com sucesso!');
+        setTimeout(hideContactCard, 1500);
     }
     
-    // Inicialização
+    // Inicialização - CORRIGIDA
     document.addEventListener('DOMContentLoaded', function() {
-      // Esconder notificação inicial
-      document.getElementById('notification').classList.remove('show');
-      
-      // Carregar e renderizar dados
-      renderReels();
-      renderPosts();
-      
-      // Efeito nos itens de endereço
-      document.querySelectorAll('.address-item').forEach(item => {
-        item.addEventListener('click', function() {
-          this.style.transform = 'scale(0.98)';
-          setTimeout(() => {
-            this.style.transform = '';
-          }, 200);
+        // Esconder notificação inicial
+        document.getElementById('notification').classList.remove('show');
+        
+        // Carregar e renderizar dados de forma assíncrona
+        (async function() {
+            await renderReels();
+            await renderPosts();
+        })();
+        
+        // Efeito nos itens de endereço
+        document.querySelectorAll('.address-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
         });
-      });
-    });
-  </script>
+    });
+</script>
+
 </body>
 </html>

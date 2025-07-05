@@ -118,7 +118,7 @@
       overflow: hidden;
       background: 
         linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), 
-        url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+        <!-- url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'); -->
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
@@ -315,7 +315,7 @@
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.1);
       position: relative;
-      height: 260px;
+      height: 300px;
     }
 
     .reel-thumbnail {
@@ -340,7 +340,7 @@
       justify-content: center;
       gap: 20px;
       padding: 10px 0;
-      font-size: 14px;
+      font-size: 17px;
       color: #aaa;
       background: rgba(0, 0, 0, 0.3);
     }
@@ -499,8 +499,8 @@
             </div>
             
             <div class="form-group">
-              <label for="reel-image">URL da Imagem</label>
-              <input type="text" id="reel-image" placeholder="https://...">
+              <label for="reel-image">Nome do Arquivo</label>
+              <input type="text" id="reel-image" placeholder="Ex: reel1.jpg">
             </div>
             
             <div class="form-group">
@@ -558,8 +558,8 @@
             </div>
             
             <div class="form-group">
-              <label for="post-image">URL da Imagem</label>
-              <input type="text" id="post-image" placeholder="https://...">
+              <label for="post-image">Nome do Arquivo</label>
+              <input type="text" id="post-image" placeholder="Ex: post1.jpg">
             </div>
           </div>
           
@@ -612,69 +612,92 @@
   <div class="notification" id="notification">Dados salvos com sucesso!</div>
   
   <script>
-    // Dados iniciais
+    // Dados iniciais (ajustados para usar nomes de arquivo)
     let instagramData = {
-      reels: [
-        {
-          title: "Novos Controles PS5",
-          imageUrl: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-          postUrl: "https://www.instagram.com/reel/Cg1eP6DLXJc/",
-          likes: "1.2K",
-          comments: "85",
-          position: 1
-        },
-        {
-          title: "Promoção de Jogos",
-          imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-          postUrl: "https://www.instagram.com/reel/Cg0Kz4KjK5N/",
-          likes: "2.4K",
-          comments: "142",
-          position: 2
-        },
-        {
-          title: "Acessórios Nintendo",
-          imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-          postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
-          likes: "3.1K",
-          comments: "210",
-          position: 3
-        },
-        {
-          title: "Tour pela Loja",
-          imageUrl: "https://images.unsplash.com/photo-1607853554439-0069ec0f29b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-          postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
-          likes: "4.7K",
-          comments: "324",
-          position: 4
-        }
-      ],
-      posts: [
-        {
-          title: "Controle PS5 - Novo Estoque",
-          imageUrl: "https://images.unsplash.com/photo-1607853554439-0069ec0f29b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-          postUrl: "https://www.instagram.com/p/Cg1eP6DLXJc/",
-          position: 1
-        },
-        {
-          title: "Promoção de Jogos PS4",
-          imageUrl: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-          postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-          position: 2
-        },
-        {
-          title: "Acessórios Nintendo",
-          imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-          postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-          position: 3
-        },
-        {
-          title: "Nossas Lojas",
-          imageUrl: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-          postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
-          position: 4
-        }
-      ]
+        reels: [
+            {
+                title: "Novos Controles PS5",
+                image: "reel1.jpg",
+                postUrl: "https://www.instagram.com/reel/Cg1eP6DLXJc/",
+                likes: "1.2K",
+                comments: "85",
+                position: 1
+            },
+            {
+                title: "Promoção de Jogos",
+                image: "reel2.jpg",
+                postUrl: "https://www.instagram.com/reel/Cg0Kz4KjK5N/",
+                likes: "2.4K",
+                comments: "142",
+                position: 2
+            },
+            {
+                title: "Acessórios Nintendo",
+                image: "reel3.jpg",
+                postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
+                likes: "3.1K",
+                comments: "210",
+                position: 3
+            },
+            {
+                title: "Tour pela Loja",
+                image: "reel4.jpg",
+                postUrl: "https://www.instagram.com/reel/CfzXkY2jJ7H/",
+                likes: "4.7K",
+                comments: "324",
+                position: 4
+            }
+        ],
+        posts: [
+            {
+                title: "Controle PS5 - Novo Estoque",
+                image: "post1.jpg",
+                postUrl: "https://www.instagram.com/p/Cg1eP6DLXJc/",
+                position: 1
+            },
+            {
+                title: "Promoção de Jogos PS4",
+                image: "post2.jpg",
+                postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+                position: 2
+            },
+            {
+                title: "Acessórios Nintendo",
+                image: "post3.jpg",
+                postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+                position: 3
+            },
+            {
+                title: "Nossas Lojas",
+                image: "post4.jpg",
+                postUrl: "https://www.instagram.com/p/Cg0Kz4KjK5N/",
+                position: 4
+            }
+        ]
     };
+
+    // Função para salvar dados no localStorage
+    function saveData() {
+        localStorage.setItem('instagramData', JSON.stringify(instagramData));
+    }
+
+    // Função para exportar dados (GERA O data.json apenas quando chamada)
+    function exportData() {
+        const dataStr = JSON.stringify(instagramData, null, 2);
+        
+        // Criar blob para download
+        const blob = new Blob([dataStr], {type: "application/json"});
+        const url = URL.createObjectURL(blob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'data.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showNotification('Arquivo data.json gerado! Faça o download e substitua o antigo');
+    }
 
     // Funções de inicialização
     document.addEventListener('DOMContentLoaded', function() {
@@ -730,7 +753,7 @@
         const reelElement = document.createElement('div');
         reelElement.className = 'reel-preview';
         reelElement.innerHTML = `
-          <div class="reel-thumbnail" style="background-image: url('${reel.imageUrl}')"></div>
+          <div class="reel-thumbnail" style="background-image: url('${reel.image}')"></div>
           <div class="reel-name">${reel.title}</div>
           <div class="reel-stats">
             <div class="reel-stat">
@@ -757,7 +780,7 @@
         const postElement = document.createElement('div');
         postElement.className = 'post-preview';
         postElement.innerHTML = `
-          <div class="post-thumbnail" style="background-image: url('${post.imageUrl}')"></div>
+          <div class="post-thumbnail" style="background-image: url('${post.image}')"></div>
           <div class="post-name">${post.title}</div>
         `;
         container.appendChild(postElement);
@@ -772,7 +795,7 @@
       // Salvar postagem
       document.getElementById('save-post').addEventListener('click', savePost);
       
-      // Exportar dados
+      // Exportar dados (apenas gera o JSON para download)
       document.getElementById('export-data').addEventListener('click', exportData);
       
       // Importar dados
@@ -787,7 +810,7 @@
       const position = parseInt(document.getElementById('reel-position').value);
       const reel = {
         title: document.getElementById('reel-title').value,
-        imageUrl: document.getElementById('reel-image').value,
+        image: document.getElementById('reel-image').value,
         postUrl: document.getElementById('reel-url').value,
         likes: document.getElementById('reel-likes').value,
         comments: document.getElementById('reel-comments').value,
@@ -802,7 +825,7 @@
         instagramData.reels.push(reel);
       }
       
-      // Salvar dados
+      // Salvar dados apenas no localStorage
       saveData();
       
       // Renderizar preview atualizado
@@ -824,7 +847,7 @@
       const position = parseInt(document.getElementById('post-position').value);
       const post = {
         title: document.getElementById('post-title').value,
-        imageUrl: document.getElementById('post-image').value,
+        image: document.getElementById('post-image').value,
         postUrl: document.getElementById('post-url').value,
         position: position
       };
@@ -837,7 +860,7 @@
         instagramData.posts.push(post);
       }
       
-      // Salvar dados
+      // Salvar dados apenas no localStorage
       saveData();
       
       // Renderizar preview atualizado
@@ -850,26 +873,6 @@
       
       // Mostrar notificação
       showNotification('Postagem salva com sucesso!');
-    }
-
-    // Salvar dados no localStorage
-    function saveData() {
-      localStorage.setItem('instagramData', JSON.stringify(instagramData));
-    }
-
-    // Exportar dados
-    function exportData() {
-      const dataStr = JSON.stringify(instagramData, null, 2);
-      const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-      
-      const exportFileDefaultName = 'loadgames-instagram-data.json';
-      
-      const linkElement = document.createElement('a');
-      linkElement.setAttribute('href', dataUri);
-      linkElement.setAttribute('download', exportFileDefaultName);
-      linkElement.click();
-      
-      showNotification('Dados exportados com sucesso!');
     }
 
     // Importar dados
@@ -910,9 +913,6 @@
 
     // Visualizar página principal
     function viewIndexPage() {
-      // Salvar dados antes de visualizar
-      saveData();
-      
       // Abrir nova aba com a página principal
       window.open('index.html', '_blank');
     }
