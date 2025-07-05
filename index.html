@@ -1108,12 +1108,18 @@
     </div>
   </div>
   
-  <script>
-    // Configuração para GitHub Pages - CORRIGIDO
+ <script>
+    // Configuração para GitHub Pages - CORRIGIDA
     function getBasePath() {
         const isGitHub = window.location.host.includes('github.io');
-        return isGitHub ? /${window.location.pathname.split('/')[1]}/ : '/';
-    }
+        if (isGitHub) {
+            const pathParts = window.location.pathname.split('/');
+            // O nome do repositório é o segundo segmento do caminho
+            if (pathParts.length > 1) {
+                return /${pathParts[1]}/;
+            }
+        }
+        return '/';
 
     // Carregar dados do Instagram - CORRIGIDO
     async function loadInstagramData() {
