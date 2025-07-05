@@ -146,8 +146,13 @@
         }
         
         .logo img {
-            height: 50px;
+            height: 70px;
             filter: drop-shadow(0 0 10px rgba(255, 107, 0, 0.5));
+            transition: var(--transition);
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
         }
         
         .logo-text {
@@ -201,7 +206,7 @@
             padding-top: 120px;
             padding-bottom: 80px;
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80');
+                        url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -225,6 +230,113 @@
             display: flex;
             gap: 20px;
             margin-top: 30px;
+        }
+        
+        /* ===== CARROSSEL ===== */
+        .carousel-section {
+            padding: 60px 0;
+            background: var(--darker);
+        }
+        
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 500px;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+        }
+        
+        .carousel-content {
+            background: rgba(26, 26, 26, 0.85);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .carousel-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .carousel-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .carousel-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(26, 26, 26, 0.7);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        
+        .carousel-btn:hover {
+            background: var(--primary);
+        }
+        
+        .carousel-prev {
+            left: 20px;
+        }
+        
+        .carousel-next {
+            right: 20px;
         }
         
         /* ===== CONTACT BUTTONS ===== */
@@ -419,6 +531,14 @@
         }
         
         /* Seção de Postagens */
+        .posts-section {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.8), rgba(40, 40, 40, 0.8));
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
         .posts-title {
             display: flex;
             align-items: center;
@@ -570,7 +690,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-top: 30px;
+            margin: 30px auto 0; /* Centralizado horizontalmente */
             color: white;
             font-weight: 600;
             text-decoration: none;
@@ -586,6 +706,20 @@
         .google-link:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .google-g {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #4285F4;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 5px;
         }
         
         @keyframes pulse {
@@ -715,7 +849,7 @@
         }
         
         .footer-logo img {
-            height: 50px;
+            height: 70px; /* Aumentado para combinar com o header */
         }
         
         .footer-logo-text {
@@ -801,6 +935,10 @@
         @media (max-width: 992px) {
             h1 { font-size: 2.8rem; }
             h2 { font-size: 2.2rem; }
+            
+            .carousel-item {
+                height: 400px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -841,6 +979,15 @@
             .reels-grid, .posts-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .carousel-item {
+                height: 350px;
+                padding: 20px;
+            }
+            
+            .carousel-content {
+                padding: 20px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -880,6 +1027,14 @@
                 height: auto;
                 padding: 30px 0;
             }
+            
+            .carousel-item {
+                height: 300px;
+            }
+            
+            .carousel-content h3 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -888,7 +1043,8 @@
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50'%3E%3Crect fill='%23121212' width='200' height='50' rx='10'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23ff6b00' font-weight='bold'%3ELOAD GAMES%3C/text%3E%3C/svg%3E" alt="Load Games">
+                <!-- Logo2.png - Substitua pelo caminho real -->
+                <img src="https://via.placeholder.com/70x70/fd7e14/ffffff?text=LG" alt="Load Games Logo">
                 <div class="logo-text">LOAD GAMES</div>
             </a>
             
@@ -919,6 +1075,50 @@
                     <a href="#contact" class="btn">Contato Rápido</a>
                     <a href="#locations" class="btn btn-outline">Nossas Lojas</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+                    <div class="carousel-content">
+                        <h3>Promoção de Verão</h3>
+                        <p>Aproveite os melhores preços em jogos e acessórios nesta temporada de verão!</p>
+                        <a href="#" class="btn">Ver Ofertas</a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+                    <div class="carousel-content">
+                        <h3>Novo Estoque PS5</h3>
+                        <p>Consoles PlayStation 5 disponíveis com frete grátis para todo Brasil!</p>
+                        <a href="#" class="btn">Comprar Agora</a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+                    <div class="carousel-content">
+                        <h3>Coleção Nintendo</h3>
+                        <p>Os melhores jogos e acessórios para seu Nintendo Switch com descontos especiais.</p>
+                        <a href="#" class="btn">Ver Produtos</a>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-btn carousel-prev" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn carousel-next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="carousel-nav" id="carouselNav">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
             </div>
         </div>
     </section>
@@ -969,20 +1169,25 @@
         </div>
     </section>
 
-    <!-- Instagram Section -->
-    <section id="instagram" class="instagram-section">
+    <!-- Instagram Reels Section -->
+    <section id="instagram-reels" class="instagram-section">
         <div class="container">
             <div class="section-header">
                 <div class="instagram-title">
                     <i class="fab fa-instagram"></i>
-                    Reels em Destaque
+                    Reels do Instagram
                 </div>
             </div>
             
             <div class="reels-grid" id="reels-container">
                 <!-- Reels serão carregados pelo JavaScript -->
             </div>
-            
+        </div>
+    </section>
+
+    <!-- Instagram Posts Section -->
+    <section id="instagram-posts" class="posts-section">
+        <div class="container">
             <div class="posts-title">
                 <i class="far fa-image"></i>
                 Postagens em Destaque
@@ -1039,7 +1244,7 @@
             </div>
             
             <a href="https://g.page/r/CUuStQaFwk4qEAE/review" class="google-link" target="_blank">
-                <i class="fab fa-google"></i> Avalie-nos no Google
+                <span class="google-g">G</span>oogle Avaliações
             </a>
         </div>
     </section>
@@ -1108,7 +1313,8 @@
             <div class="footer-container">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50'%3E%3Crect fill='%23121212' width='200' height='50' rx='10'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23ff6b00' font-weight='bold'%3ELOAD GAMES%3C/text%3E%3C/svg%3E" alt="Load Games">
+                        <!-- Logo2.png - Substitua pelo caminho real -->
+                        <img src="assets/images/logo2.png" alt="Load Games">
                         <div class="footer-logo-text">LOAD GAMES</div>
                     </div>
                     <p>Há mais de 10 anos oferecendo os melhores consoles, acessórios e games com preços imbatíveis.</p>
@@ -1125,10 +1331,10 @@
                     <h4>Links Rápidos</h4>
                     <ul>
                         <li><a href="#hero">Início</a></li>
-                        <li><a href="#instagram">Instagram</a></li>
+                        <li><a href="#instagram-reels">Reels</a></li>
+                        <li><a href="#instagram-posts">Postagens</a></li>
                         <li><a href="#reviews">Avaliações</a></li>
                         <li><a href="#locations">Lojas</a></li>
-                        <li><a href="#contact">Contato</a></li>
                     </ul>
                 </div>
                 
@@ -1330,10 +1536,51 @@
             });
         });
         
+        // Carrossel
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+        const items = document.querySelectorAll('.carousel-item');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const totalItems = items.length;
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Atualizar dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateCarousel();
+        });
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        });
+        
+        // Adicionar eventos aos dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+        
+        // Auto-rotatividade do carrossel
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        }, 5000);
+        
         // Inicializar quando a página carregar
         window.addEventListener('DOMContentLoaded', function() {
             renderReels();
             renderPosts();
+            updateCarousel();
         });
     </script>
 </body>
