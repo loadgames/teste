@@ -200,8 +200,8 @@
         .hero {
             padding-top: 120px;
             padding-bottom: 80px;
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
-                        url('assets/images/loja1.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -567,16 +567,31 @@
         }
         
         .google-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             margin-top: 30px;
-            color: var(--primary);
+            color: white;
             font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
+            background: linear-gradient(45deg, #4285F4, #34A853, #FBBC05, #EA4335);
+            padding: 15px 30px;
+            border-radius: 50px;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
         }
         
         .google-link:hover {
-            text-decoration: underline;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         /* ===== ADDRESS SECTION ===== */
@@ -850,6 +865,21 @@
             .reels-grid, .posts-grid {
                 grid-template-columns: 1fr;
             }
+            
+            /* Menu mobile com animação de "saída" */
+            nav ul {
+                transform: translateY(-100%);
+                opacity: 0;
+                height: 0;
+                overflow: hidden;
+            }
+            
+            nav ul.active {
+                transform: translateY(0);
+                opacity: 1;
+                height: auto;
+                padding: 30px 0;
+            }
         }
     </style>
 </head>
@@ -858,7 +888,7 @@
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgNTAiPjx0ZXh0IHg9IjEwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmY2YjAwIiBmb250LXdlaWdodD0iYm9sZCI+TE9BRCBHQU1FUzwvdGV4dD48L3N2Zz4=" alt="Load Games">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50'%3E%3Crect fill='%23121212' width='200' height='50' rx='10'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23ff6b00' font-weight='bold'%3ELOAD GAMES%3C/text%3E%3C/svg%3E" alt="Load Games">
                 <div class="logo-text">LOAD GAMES</div>
             </a>
             
@@ -1009,7 +1039,7 @@
             </div>
             
             <a href="https://g.page/r/CUuStQaFwk4qEAE/review" class="google-link" target="_blank">
-                <i class="fas fa-star"></i> Avalie-nos no Google
+                <i class="fab fa-google"></i> Avalie-nos no Google
             </a>
         </div>
     </section>
@@ -1078,7 +1108,7 @@
             <div class="footer-container">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgNTAiPjx0ZXh0IHg9IjEwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmY2YjAwIiBmb250LXdlaWdodD0iYm9sZCI+TE9BRCBHQU1FUzwvdGV4dD48L3N2Zz4=" alt="Load Games">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='50'%3E%3Crect fill='%23121212' width='200' height='50' rx='10'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23ff6b00' font-weight='bold'%3ELOAD GAMES%3C/text%3E%3C/svg%3E" alt="Load Games">
                         <div class="footer-logo-text">LOAD GAMES</div>
                     </div>
                     <p>Há mais de 10 anos oferecendo os melhores consoles, acessórios e games com preços imbatíveis.</p>
