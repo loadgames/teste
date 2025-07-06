@@ -2117,22 +2117,25 @@
                 }
             }
         }
-           const mainSlide = document.querySelector('.main-slide');
+        
+        // Inicializar quando a página carregar
+        window.addEventListener('DOMContentLoaded', function () {
+    renderReels();
+    renderPosts();
+    renderSteamThumbnails();
+    goToSlide(0); // Inicia com o primeiro slide
+    startAutoSlide(); // Inicia o slide automático
+    setupPauseButton(); // Configura o botão de pause
+    renderIndicators(); // Renderiza os indicadores
+
+    // Adicionar eventos de touch ao slide principal
+    const mainSlide = document.querySelector('.main-slide');
     if (mainSlide) {
         mainSlide.addEventListener('touchstart', handleTouchStart, false);
         mainSlide.addEventListener('touchmove', handleTouchMove, false);
         mainSlide.addEventListener('touchend', handleTouchEnd, false);
     }
-        // Inicializar quando a página carregar
-        window.addEventListener('DOMContentLoaded', function() {
-            renderReels();
-            renderPosts();
-            renderSteamThumbnails();
-            goToSlide(0); // Inicia com o primeiro slide
-            startAutoSlide(); // Inicia o slide automático
-            setupPauseButton(); // Configurar o botão de pause
-        }
-	);
+});
 		
 		
     </script>
