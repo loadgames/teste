@@ -1463,6 +1463,8 @@
                     <!-- Miniaturas serão geradas pelo JavaScript -->
                 </div>
             </div>
+            <!-- Container para os indicadores de pontos (ADICIONADO) -->
+            <div class="carousel-indicators" id="indicatorsContainer"></div>
         </div>
     </section>
 
@@ -1974,170 +1976,171 @@
             });
         }
         
-        // Função para ir para um slide específico
-        function goToSlide(index) {
-            const slide = carouselData[index];
-            const mainSlide = document.querySelector('.main-slide');
-            const slideTitle = document.getElementById('slideTitle');
-            const slideDescription = document.getElementById('slideDescription');
-            const slideDiscount = document.getElementById('slideDiscount');
-            const slideOldPrice = document.getElementById('slideOldPrice');
-            const slideNewPrice = document.getElementById('slideNewPrice');
+     // Variáveis globais
+    let autoSlideInterval;
+    let isPaused = false;
+    let currentSlideIndex = 0;
+
+    // Função para ir para um slide específico
+    function goToSlide(index) {
+        const slide = carouselData[index];
+        const mainSlide = document.querySelector('.main-slide');
+        const slideTitle = document.getElementById('slideTitle');
+        const slideDescription = document.getElementById('slideDescription');
+        const slideDiscount = document.getElementById('slideDiscount');
+        const slideOldPrice = document.getElementById('slideOldPrice');
+        const slideNewPrice = document.getElementById('slideNewPrice');
+        
+        // Atualizar o slide principal
+        mainSlide.style.backgroundImage = `url('${slide.image}')`;
+        slideTitle.textContent = slide.title;
+        slideDescription.textContent = slide.description;
+        slideDiscount.textContent = slide.discount;
+        slideOldPrice.textContent = slide.oldPrice;
+        slideNewPrice.textContent = slide.newPrice;
+        
+        // Tornar todo o slide um link para o WhatsApp
+        mainSlide.onclick = function() {
+            window.open(`https://wa.me/551128620607?text=${encodeURIComponent('Olá, gostaria de saber mais sobre: ' + slide.title)}`, '_blank');
+        };
+        
+        // Atualizar as miniaturas ativas
+        document.querySelectorAll('.thumb-item').forEach((thumb, idx) => {
+            thumb.classList.toggle('active', idx === index);
+        });
+        
+        // Atualizar os indicadores ativos
+        document.querySelectorAll('.indicator').forEach((indicator, idx) => {
+            indicator.classList.toggle('active', idx === index);
+        });
+        
+        // Atualizar o índice atual
+        currentSlideIndex = index;
+        
+        // Reiniciar o temporizador automático
+        if (!isPaused) {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+    }
+    
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            currentSlideIndex = (currentSlideIndex + 1) % carouselData.length;
+            goToSlide(currentSlideIndex);
+        }, 5000);
+    }
+    
+    // Botão de pause
+    function setupPauseButton() {
+        const pauseBtn = document.getElementById('pauseBtn');
+        pauseBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            isPaused = !isPaused;
             
-            // Atualizar o slide principal
-            mainSlide.style.backgroundImage = `url('${slide.image}')`;
-            slideTitle.textContent = slide.title;
-            slideDescription.textContent = slide.description;
-            slideDiscount.textContent = slide.discount;
-            slideOldPrice.textContent = slide.oldPrice;
-            slideNewPrice.textContent = slide.newPrice;
-            
-            // Tornar todo o slide um link para o WhatsApp
-            mainSlide.onclick = function() {
-                window.open(`https://wa.me/551128620607?text=${encodeURIComponent('Olá, gostaria de saber mais sobre: ' + slide.title)}`, '_blank');
-            };
-            
-            // Atualizar as miniaturas ativas
-            document.querySelectorAll('.thumb-item').forEach((thumb, idx) => {
-                thumb.classList.toggle('active', idx === index);
-            });
-            
-            // Reiniciar o temporizador automático
-            if (!isPaused) {
+            const icon = this.querySelector('i');
+            if (isPaused) {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
                 clearInterval(autoSlideInterval);
+            } else {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
                 startAutoSlide();
             }
-        }
-        
-        let autoSlideInterval;
-        let isPaused = false;
-        
-        function startAutoSlide() {
-            let currentIndex = 0;
-            // Encontra o índice do slide ativo
-            document.querySelectorAll('.thumb-item').forEach((thumb, idx) => {
-                if(thumb.classList.contains('active')) {
-                    currentIndex = idx;
-                }
-            });
-            
-            autoSlideInterval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % carouselData.length;
-                goToSlide(currentIndex);
-            }, 5000);
-        }
-        
-        // Botão de pause
-        function setupPauseButton() {
-            const pauseBtn = document.getElementById('pauseBtn');
-            pauseBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Impedir que o clique no botão dispare o link do WhatsApp
-                isPaused = !isPaused;
-                
-                const icon = this.querySelector('i');
-                if (isPaused) {
-                    icon.classList.remove('fa-pause');
-                    icon.classList.add('fa-play');
-                    clearInterval(autoSlideInterval);
-                } else {
-                    icon.classList.remove('fa-play');
-                    icon.classList.add('fa-pause');
-                    startAutoSlide();
-                }
-            });
-        }
-        
-        // Menu mobile
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
         });
-        
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Fechar menu mobile após clicar em um link
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-		      // Funções para os indicadores de pontos
-        function renderIndicators() {
-            const container = document.getElementById('indicatorsContainer');
-            container.innerHTML = '';
+    }
+    
+    // Menu mobile
+    document.querySelector('.mobile-menu').addEventListener('click', function() {
+        document.querySelector('nav ul').classList.toggle('active');
+    });
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            carouselData.forEach((_, index) => {
-                const indicator = document.createElement('div');
-                indicator.className = 'indicator';
-                if(index === 0) indicator.classList.add('active');
-                
-                indicator.addEventListener('click', () => {
-                    goToSlide(index);
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
                 });
                 
-                container.appendChild(indicator);
-            });
-        }
-
-        // Variáveis para controle do touch
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        // Funções para navegação por touch
-        function handleTouchStart(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        }
-
-        function handleTouchMove(e) {
-            touchEndX = e.changedTouches[0].screenX;
-        }
-
-        function handleTouchEnd() {
-            const diff = touchStartX - touchEndX;
-            const absDiff = Math.abs(diff);
+                // Fechar menu mobile após clicar em um link
+                document.querySelector('nav ul').classList.remove('active');
+            }
+        });
+    });
+    
+    // Funções para os indicadores de pontos
+    function renderIndicators() {
+        const container = document.getElementById('indicatorsContainer');
+        container.innerHTML = '';
+        
+        carouselData.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            if(index === 0) indicator.classList.add('active');
             
-            // Se o movimento for maior que 50px, consideramos swipe
-            if (absDiff > 50) {
-                if (diff > 0) {
-                    // Swipe left: próxima
-                    let nextIndex = (currentSlideIndex + 1) % carouselData.length;
-                    goToSlide(nextIndex);
-                } else {
-                    // Swipe right: anterior
-                    let prevIndex = (currentSlideIndex - 1 + carouselData.length) % carouselData.length;
-                    goToSlide(prevIndex);
-                }
+            indicator.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            
+            container.appendChild(indicator);
+        });
+    }
+
+    // Variáveis para controle do touch
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    // Funções para navegação por touch
+    function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchMove(e) {
+        touchEndX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd() {
+        const diff = touchStartX - touchEndX;
+        const absDiff = Math.abs(diff);
+        
+        // Se o movimento for maior que 50px, consideramos swipe
+        if (absDiff > 50) {
+            if (diff > 0) {
+                // Swipe left: próxima
+                let nextIndex = (currentSlideIndex + 1) % carouselData.length;
+                goToSlide(nextIndex);
+            } else {
+                // Swipe right: anterior
+                let prevIndex = (currentSlideIndex - 1 + carouselData.length) % carouselData.length;
+                goToSlide(prevIndex);
             }
         }
-        
-        // Inicializar quando a página carregar
-        window.addEventListener('DOMContentLoaded', function () {
-    renderReels();
-    renderPosts();
-    renderSteamThumbnails();
-    goToSlide(0); // Inicia com o primeiro slide
-    startAutoSlide(); // Inicia o slide automático
-    setupPauseButton(); // Configura o botão de pause
-    renderIndicators(); // Renderiza os indicadores
-
-    // Adicionar eventos de touch ao slide principal
-    const mainSlide = document.querySelector('.main-slide');
-    if (mainSlide) {
-        mainSlide.addEventListener('touchstart', handleTouchStart, false);
-        mainSlide.addEventListener('touchmove', handleTouchMove, false);
-        mainSlide.addEventListener('touchend', handleTouchEnd, false);
     }
-});
-		
-		
-    </script>
+    
+    // Inicializar quando a página carregar
+    window.addEventListener('DOMContentLoaded', function() {
+        renderReels();
+        renderPosts();
+        renderSteamThumbnails();
+        renderIndicators();
+        goToSlide(0);
+        startAutoSlide();
+        setupPauseButton();
+        
+        // Adicionar eventos de touch ao slide principal
+        const mainSlide = document.querySelector('.main-slide');
+        if (mainSlide) {
+            mainSlide.addEventListener('touchstart', handleTouchStart, false);
+            mainSlide.addEventListener('touchmove', handleTouchMove, false);
+            mainSlide.addEventListener('touchend', handleTouchEnd, false);
+        }
+    });
+</script>
 </body>
 </html>
