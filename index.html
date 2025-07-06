@@ -277,12 +277,8 @@
             margin-top: 30px;
         }
         
-        /* ===== CARROSSEL ===== */
-        .carousel-section {
-            position: relative;
-        }
-        
-        .carousel-container {
+        /* ===== CARROSSEL ESTILO STEAM ===== */
+        .steam-carousel {
             display: flex;
             height: 500px;
             background: rgba(30, 30, 30, 0.8);
@@ -290,40 +286,53 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .carousel-thumbnails {
-            width: 25%;
-            background: rgba(20, 20, 20, 0.9);
-            display: flex;
-            flex-direction: column;
-            padding: 20px 10px;
-            gap: 15px;
-            overflow-y: auto;
-        }
-        
-        .thumbnail-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
             position: relative;
         }
         
-        .thumbnail-item.active {
-            background: rgba(255, 107, 0, 0.1);
-            border-color: var(--primary);
+        .main-slide {
+            flex: 3;
+            position: relative;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background-size: cover;
+            background-position: center;
+            width: 75%;
         }
         
-        .thumbnail-item:hover {
+        .thumbnails {
+            flex: 1;
+            background: rgba(20, 20, 20, 0.9);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 10px 0;
+            width: 25%;
+        }
+        
+        .thumb-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 0;
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+            align-items: center;
+            position: relative;
+        }
+        
+        .thumb-item.active {
+            background: rgba(255, 107, 0, 0.1);
+            border-left-color: var(--primary);
+        }
+        
+        .thumb-item:hover {
             background: rgba(255, 255, 255, 0.05);
         }
         
-        .thumbnail-img {
+        .thumb-img {
             width: 60px;
             height: 40px;
             border-radius: 8px;
@@ -332,99 +341,67 @@
             flex-shrink: 0;
         }
         
-        .thumbnail-title {
+        .thumb-title {
             font-size: 0.9rem;
             color: var(--light);
             font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .discount-tag {
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #aaa;
+            font-size: 1rem;
+        }
+        
+        .new-price {
+            font-weight: 700;
+            color: var(--light);
+            font-size: 1.2rem;
+        }
+
+        /* ===== BARRA DE PROGRESSO (EFEITO DE CARREGAMENTO) ===== */
+        .progress-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
         }
         
         .progress-bar {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            height: 3px;
-            background: var(--primary);
-            width: 0;
-            transition: width 0.1s linear;
+            height: 100%;
+            width: 0%;
+            transition: width 5s linear;
+            background: linear-gradient(to right, #607D8B, #90A4AE);
             border-radius: 0 0 12px 12px;
         }
         
-        .carousel {
-            width: 75%;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        .carousel-item {
-            min-width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        
-        .carousel-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .thumb-item.active .progress-bar {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
-        }
-        
-        .carousel-content {
-            position: relative;
-            z-index: 2;
-            padding: 40px;
-            max-width: 500px;
-        }
-        
-        .carousel-content h3 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .carousel-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #ddd;
-        }
-        
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 107, 0, 0.8);
-            border: none;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .carousel-btn:hover {
-            background: var(--primary);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-        }
-        
-        .carousel-prev {
-            left: 20px;
-        }
-        
-        .carousel-next {
-            right: 20px;
         }
         
         /* ===== CONTACT BUTTONS ===== */
@@ -1191,12 +1168,17 @@
             h1 { font-size: 2.8rem; }
             h2 { font-size: 2.2rem; }
             
-            .carousel-container {
+            .steam-carousel {
                 flex-direction: column;
                 height: auto;
             }
             
-            .carousel-thumbnails {
+            .main-slide {
+                width: 100%;
+                height: 400px;
+            }
+            
+            .thumbnails {
                 width: 100%;
                 height: 150px;
                 flex-direction: row;
@@ -1205,34 +1187,22 @@
                 gap: 10px;
             }
             
-            .thumbnail-item {
+            .thumb-item {
                 flex-direction: column;
                 width: 120px;
                 text-align: center;
+                border-left: none;
+                border-top: 4px solid transparent;
             }
             
-            .thumbnail-img {
+            .thumb-item.active {
+                border-left: none;
+                border-top: 4px solid var(--primary);
+            }
+            
+            .thumb-img {
                 width: 100px;
                 height: 60px;
-            }
-            
-            .carousel {
-                width: 100%;
-                height: 400px;
-            }
-            
-            .carousel-prev {
-                left: 20px;
-            }
-            
-            .carousel-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-            
-            .carousel-content {
-                padding: 20px;
             }
         }
         
@@ -1309,10 +1279,6 @@
                 padding: 30px 0;
             }
             
-            .carousel-content h3 {
-                font-size: 1.8rem;
-            }
-            
             .logo img {
                 height: 55px;
             }
@@ -1364,69 +1330,29 @@
         </div>
     </section>
 
-    <!-- Carousel Section -->
+    <!-- Carousel Section - Estilo Steam/Epic -->
     <section class="carousel-section">
         <div class="container">
-            <div class="carousel-container">
-                <!-- Miniaturas -->
-                <div class="carousel-thumbnails" id="thumbnails">
+            <div class="steam-carousel" id="steamCarousel">
+                <!-- Área Principal do Slide -->
+                <div class="main-slide">
+                    <div class="carousel-overlay"></div>
+                    <div class="carousel-content">
+                        <h3 id="slideTitle">Título do Game</h3>
+                        <p id="slideDescription">Descrição detalhada do game com promoções, novidades e mais.</p>
+                        <div class="price-row">
+                            <span class="discount-tag" id="slideDiscount">-20%</span>
+                            <span class="old-price" id="slideOldPrice">R$ 229,99</span>
+                            <span class="new-price" id="slideNewPrice">R$ 183,99</span>
+                        </div>
+                        <a href="#" class="btn" id="slideButton">Ver Oferta</a>
+                    </div>
+                </div>
+                
+                <!-- Lista Lateral de Miniaturas -->
+                <div class="thumbnails" id="thumbnailsList">
                     <!-- Miniaturas serão geradas pelo JavaScript -->
                 </div>
-                
-                <!-- Slides principais -->
-                <div class="carousel" id="carousel">
-                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-                        <div class="carousel-overlay"></div>
-                        <div class="carousel-content">
-                            <h3>Promoção de Verão</h3>
-                            <p>Aproveite os melhores preços em jogos e acessórios nesta temporada de verão!</p>
-                            <a href="#" class="btn">Ver Ofertas</a>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-                        <div class="carousel-overlay"></div>
-                        <div class="carousel-content">
-                            <h3>Novo Estoque PS5</h3>
-                            <p>Consoles PlayStation 5 disponíveis com frete grátis para todo Brasil!</p>
-                            <a href="#" class="btn">Comprar Agora</a>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-                        <div class="carousel-overlay"></div>
-                        <div class="carousel-content">
-                            <h3>Coleção Nintendo</h3>
-                            <p>Os melhores jogos e acessórios para seu Nintendo Switch com descontos especiais.</p>
-                            <a href="#" class="btn">Ver Produtos</a>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-                        <div class="carousel-overlay"></div>
-                        <div class="carousel-content">
-                            <h3>Acessórios Premium</h3>
-                            <p>Headsets, controles e periféricos de alta qualidade com garantia de 1 ano.</p>
-                            <a href="#" class="btn">Conhecer</a>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-                        <div class="carousel-overlay"></div>
-                        <div class="carousel-content">
-                            <h3>Jogos em Destaque</h3>
-                            <p>Os lançamentos mais esperados com preços especiais para assinantes.</p>
-                            <a href="#" class="btn">Ver Catálogo</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="carousel-btn carousel-prev" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn carousel-next" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
             </div>
         </div>
     </section>
@@ -1560,7 +1486,7 @@
             <div class="review-cta">
                 <p>Sua avaliação é muito importante para nós!</p>
                 <a href="https://g.page/r/CUuStQaFwk4qEAE/review" class="google-link" target="_blank">
-                    <span class="google-g">G</span>oogle Avaliações
+                    <span class="google-g">G</span>Google Avaliações
                 </a>
             </div>
         </div>
@@ -1759,42 +1685,57 @@
             }
         ];
         
-        // Dados do carrossel
+        // Dados do carrossel estilo Steam/Epic
         const carouselData = [
             {
                 title: "Promoção de Verão",
                 image: "https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Aproveite os melhores preços em jogos e acessórios nesta temporada de verão!",
-                link: "#"
+                link: "#",
+                discount: "-30%",
+                oldPrice: "R$ 150,00",
+                newPrice: "R$ 105,00"
             },
             {
                 title: "Novo Estoque PS5",
                 image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Consoles PlayStation 5 disponíveis com frete grátis para todo Brasil!",
-                link: "#"
+                link: "#",
+                discount: "-20%",
+                oldPrice: "R$ 229,99",
+                newPrice: "R$ 183,99"
             },
             {
                 title: "Coleção Nintendo",
                 image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Os melhores jogos e acessórios para seu Nintendo Switch com descontos especiais.",
-                link: "#"
+                link: "#",
+                discount: "-25%",
+                oldPrice: "R$ 120,00",
+                newPrice: "R$ 90,00"
             },
             {
                 title: "Acessórios Premium",
                 image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Headsets, controles e periféricos de alta qualidade com garantia de 1 ano.",
-                link: "#"
+                link: "#",
+                discount: "-15%",
+                oldPrice: "R$ 299,99",
+                newPrice: "R$ 254,99"
             },
             {
                 title: "Jogos em Destaque",
                 image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Os lançamentos mais esperados com preços especiais para assinantes.",
-                link: "#"
+                link: "#",
+                discount: "-10%",
+                oldPrice: "R$ 80,00",
+                newPrice: "R$ 72,00"
             }
         ];
         
@@ -1896,29 +1837,67 @@
             });
         }
         
-        // Renderizar miniaturas do carrossel
-        function renderThumbnails() {
-            const container = document.getElementById('thumbnails');
+        // Renderizar miniaturas do carrossel estilo Steam
+        function renderSteamThumbnails() {
+            const container = document.getElementById('thumbnailsList');
             container.innerHTML = '';
             
             carouselData.forEach((item, index) => {
                 const thumbElement = document.createElement('div');
-                thumbElement.className = 'thumbnail-item';
+                thumbElement.className = 'thumb-item';
                 if(index === 0) thumbElement.classList.add('active');
                 
                 thumbElement.innerHTML = `
-                    <div class="thumbnail-img" style="background-image: url('${item.thumbnail}')"></div>
-                    <div class="thumbnail-title">${item.title}</div>
-                    <div class="progress-bar"></div>
+                    <div class="thumb-img" style="background-image: url('${item.thumbnail}')"></div>
+                    <div class="thumb-title">${item.title}</div>
                 `;
                 
                 thumbElement.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateCarousel();
+                    goToSlide(index);
                 });
                 
                 container.appendChild(thumbElement);
             });
+        }
+        
+        // Função para ir para um slide específico
+        function goToSlide(index) {
+            const slide = carouselData[index];
+            const mainSlide = document.querySelector('.main-slide');
+            const slideTitle = document.getElementById('slideTitle');
+            const slideDescription = document.getElementById('slideDescription');
+            const slideDiscount = document.getElementById('slideDiscount');
+            const slideOldPrice = document.getElementById('slideOldPrice');
+            const slideNewPrice = document.getElementById('slideNewPrice');
+            const slideButton = document.getElementById('slideButton');
+            
+            // Atualizar o slide principal
+            mainSlide.style.backgroundImage = `url('${slide.image}')`;
+            slideTitle.textContent = slide.title;
+            slideDescription.textContent = slide.description;
+            slideDiscount.textContent = slide.discount;
+            slideOldPrice.textContent = slide.oldPrice;
+            slideNewPrice.textContent = slide.newPrice;
+            slideButton.href = slide.link;
+            
+            // Atualizar as miniaturas ativas
+            document.querySelectorAll('.thumb-item').forEach((thumb, idx) => {
+                thumb.classList.toggle('active', idx === index);
+            });
+            
+            // Reiniciar o temporizador automático
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+        
+        let autoSlideInterval;
+        
+        function startAutoSlide() {
+            let currentIndex = 0;
+            autoSlideInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % carouselData.length;
+                goToSlide(currentIndex);
+            }, 5000);
         }
         
         // Menu mobile
@@ -1944,62 +1923,39 @@
             });
         });
         
-        // Carrossel
-        let currentIndex = 0;
-        let autoSlideInterval;
-        const carousel = document.getElementById('carousel');
-        const totalItems = carouselData.length;
-        
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-            
-            // Atualizar miniaturas ativas
-            document.querySelectorAll('.thumbnail-item').forEach((thumb, index) => {
-                thumb.classList.toggle('active', index === currentIndex);
-                
-                // Reiniciar a barra de progresso
-                const progressBar = thumb.querySelector('.progress-bar');
-                progressBar.style.width = '0';
-                
-                if(index === currentIndex) {
-                    // Iniciar animação da barra de progresso
-                    progressBar.style.transition = 'width 5s linear';
-                    setTimeout(() => {
-                        progressBar.style.width = '100%';
-                    }, 10);
-                }
-            });
-            
-            // Reiniciar o temporizador automático
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
-        
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalItems;
-                updateCarousel();
-            }, 5000);
-        }
-        
-        document.getElementById('prevBtn').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-            updateCarousel();
-        });
-        
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalItems;
-            updateCarousel();
-        });
-        
         // Inicializar quando a página carregar
         window.addEventListener('DOMContentLoaded', function() {
             renderReels();
             renderPosts();
-            renderThumbnails();
-            updateCarousel();
+            renderSteamThumbnails();
+            goToSlide(0); // Inicia com o primeiro slide
+            startAutoSlide(); // Inicia o slide automático
         });
+		// Renderizar miniaturas do carrossel estilo Steam com barra de progresso
+        function renderSteamThumbnails() {
+            const container = document.getElementById('thumbnailsList');
+            container.innerHTML = '';
+            
+            carouselData.forEach((item, index) => {
+                const thumbElement = document.createElement('div');
+                thumbElement.className = 'thumb-item';
+                if(index === 0) thumbElement.classList.add('active');
+                
+                thumbElement.innerHTML = `
+                    <div class="thumb-img" style="background-image: url('${item.thumbnail}')"></div>
+                    <div class="thumb-title">${item.title}</div>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                `;
+                
+                thumbElement.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+                
+                container.appendChild(thumbElement);
+            });
+        }
     </script>
 </body>
 </html>
-
