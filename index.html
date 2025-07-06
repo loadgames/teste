@@ -173,6 +173,11 @@
             100% { transform: translateY(0); }
         }
         
+        @keyframes waveAnimation {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
         /* ===== HEADER ===== */
         header {
             background: rgba(26, 26, 26, 0.7);
@@ -280,20 +285,19 @@
         /* ===== CARROSSEL ESTILO STEAM ===== */
         .steam-carousel {
             display: flex;
-            height: 450px; /* Altura reduzida */
+            height: 450px;
             background: rgba(30, 30, 30, 0.8);
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            gap: 15px; /* Espaço entre slide e miniaturas */
+            gap: 15px;
         }
         
         .main-slide {
             flex: 3;
             position: relative;
-            padding: 30px;
             display: flex;
             align-items: center;
             gap: 30px;
@@ -301,6 +305,7 @@
             background-position: center;
             width: 75%;
             border-radius: var(--border-radius);
+            cursor: pointer;
         }
         
         .thumbnails {
@@ -336,6 +341,23 @@
             background: rgba(255, 255, 255, 0.05);
         }
         
+        /* Efeito de onda para o botão inteiro */
+        .thumb-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+            z-index: 0;
+        }
+        
+        .thumb-item.active::before {
+            animation: waveAnimation 1.5s infinite;
+        }
+        
         .thumb-img {
             width: 60px;
             height: 40px;
@@ -343,6 +365,8 @@
             background-size: cover;
             background-position: center;
             flex-shrink: 0;
+            position: relative;
+            z-index: 1;
         }
         
         .thumb-title {
@@ -352,6 +376,8 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            position: relative;
+            z-index: 1;
         }
         
         .price-row {
@@ -381,52 +407,43 @@
             color: var(--light);
             font-size: 1.2rem;
         }
-
-        /* ===== BARRA DE PROGRESSO (EFEITO DE CARREGAMENTO) ===== */
-        .progress-container {
+        
+        /* MODIFICAÇÕES SOLICITADAS PARA O CARROSSEL */
+        .main-slide .carousel-content {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            overflow: hidden;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            z-index: 2;
+            background: rgba(26, 26, 26, 0.7);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .progress-bar {
+        .pause-btn {
             position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0%;
-            transition: width 5s linear;
-            background: linear-gradient(to right, #607D8B, #90A4AE);
-            border-radius: 0 0 12px 12px;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(26, 26, 26, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
         }
         
-        /* Efeito de onda (como nos botões de contato) */
-        .progress-bar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .thumb-item.active .progress-bar {
-            width: 100%;
-        }
-        
-        .thumb-item.active .progress-bar::before {
-            animation: waveAnimation 1.5s infinite;
-        }
-        
-        @keyframes waveAnimation {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .pause-btn:hover {
+            background: var(--primary);
+            transform: scale(1.1);
         }
 
         /* ===== CONTACT BUTTONS ===== */
@@ -821,6 +838,7 @@
             color: var(--light);
         }
         
+             /* ===== ESTILO DO GOOGLE AVALIAÇÕES ===== */
         .google-link {
             display: inline-flex;
             align-items: center;
@@ -854,6 +872,40 @@
             text-align: center;
             line-height: 24px;
             margin-right: 5px;
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== INDICADORES DE PONTOS PARA MOBILE ===== */
+        .carousel-indicators {
+            display: none;
+            justify-content: center;
+            padding: 15px 0;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .indicator.active {
+            background: var(--primary);
+        }
+
+        @media (max-width: 992px) {
+            .carousel-indicators {
+                display: flex;
+            }
+            
+            .thumbnails {
+                display: none;
+            }
         }
         
         /* ===== ADDRESS SECTION ===== */
@@ -1187,6 +1239,36 @@
             color: #777;
             font-size: 0.9rem;
         }
+		/* ===== INDICADORES DE PONTOS PARA MOBILE ===== */
+        .carousel-indicators {
+            display: none;
+            justify-content: center;
+            padding: 15px 0;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .indicator.active {
+            background: var(--primary);
+        }
+
+        @media (max-width: 992px) {
+            .carousel-indicators {
+                display: flex;
+            }
+            
+            .thumbnails {
+                display: none;
+            }
+        }
         
         /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 992px) {
@@ -1362,6 +1444,9 @@
                 <!-- Área Principal do Slide -->
                 <div class="main-slide">
                     <div class="carousel-overlay"></div>
+                    <button class="pause-btn" id="pauseBtn">
+                        <i class="fas fa-pause"></i>
+                    </button>
                     <div class="carousel-content">
                         <h3 id="slideTitle">Título do Game</h3>
                         <p id="slideDescription">Descrição detalhada do game com promoções, novidades e mais.</p>
@@ -1370,7 +1455,6 @@
                             <span class="old-price" id="slideOldPrice">R$ 229,99</span>
                             <span class="new-price" id="slideNewPrice">R$ 183,99</span>
                         </div>
-                        <a href="#" class="btn" id="slideButton">Ver Oferta</a>
                     </div>
                 </div>
                 
@@ -1464,7 +1548,7 @@
         </div>
     </section>
 
-    <!-- Reviews Section -->
+<!-- Reviews Section -->
     <section id="reviews" class="reviews-section">
         <div class="container">
             <h2>Avaliações de Clientes</h2>
@@ -1477,10 +1561,10 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <!-- <i class="fas fa-star"></i> -->
                     </div>
-                    <p class="review-text">"Melhor loja de games da região! Atendimento excelente, preços justos e variedade de produtos. Comprei meu PS5 e fui muito bem atendido."</p>
-                    <p class="review-author">- Carlos Oliveira</p>
+                    <p class="review-text">"Para o que precisei atendeu muito bem, um concerto no Xbox e controle do aparelho, coisa que outros lugares pediram uns dias pra dar o diagnóstico, neste local ja sai sabendo mais ou menos o valor que pagaria. Ótimo atendimento"</p>
+                    <p class="review-author">- Fernando Xavier</p>
                 </div>
                 
                 <div class="review-card">
@@ -1492,7 +1576,7 @@
                         <i class="fas fa-star-half-alt"></i>
                     </div>
                     <p class="review-text">"Sempre encontro os melhores preços na Load Games. Já comprei vários jogos e acessórios. Recomendo muito!"</p>
-                    <p class="review-author">- Ana Silva</p>
+                    <p class="review-author">- Jheniffer Narlla</p>
                 </div>
                 
                 <div class="review-card">
@@ -1503,15 +1587,15 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="review-text">"Atendimento rápido e eficiente. Tive um problema com um controle e resolveram na hora. Loja confiável e com ótimos preços."</p>
-                    <p class="review-author">- Pedro Santos</p>
+                    <p class="review-text">"Uns queridos, resolvem os problemas mesmo e tem um ótimo atendimento. Só conserto meu celular com eles."</p>
+                    <p class="review-author">- Julia Costa Araújo</p>
                 </div>
             </div>
             
             <div class="review-cta">
                 <p>Sua avaliação é muito importante para nós!</p>
                 <a href="https://g.page/r/CUuStQaFwk4qEAE/review" class="google-link" target="_blank">
-                    <span class="google-g">G</span>oogle Avaliações
+                    <span class="google-g">G</span>Google Avaliações
                 </a>
             </div>
         </div>
@@ -1541,7 +1625,7 @@
                 </div>
                 
                 <div class="location-card">
-                    <div class="location-map" style="background-image: url('assets\images\endparque.webp')"> 
+                    <div class="location-map" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
                         <div class="map-overlay">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
@@ -1557,7 +1641,7 @@
                 </div>
                 
                 <div class="location-card">
-                    <div class="location-map" style="background-image: url('assets\images\endparque.webp">
+                    <div class="location-map" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')">
                         <div class="map-overlay">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
@@ -1717,7 +1801,6 @@
                 image: "https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Aproveite os melhores preços em jogos e acessórios nesta temporada de verão!",
-                link: "#",
                 discount: "-30%",
                 oldPrice: "R$ 150,00",
                 newPrice: "R$ 105,00"
@@ -1727,7 +1810,6 @@
                 image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Consoles PlayStation 5 disponíveis com frete grátis para todo Brasil!",
-                link: "#",
                 discount: "-20%",
                 oldPrice: "R$ 229,99",
                 newPrice: "R$ 183,99"
@@ -1737,7 +1819,6 @@
                 image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Os melhores jogos e acessórios para seu Nintendo Switch com descontos especiais.",
-                link: "#",
                 discount: "-25%",
                 oldPrice: "R$ 120,00",
                 newPrice: "R$ 90,00"
@@ -1747,7 +1828,6 @@
                 image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Headsets, controles e periféricos de alta qualidade com garantia de 1 ano.",
-                link: "#",
                 discount: "-15%",
                 oldPrice: "R$ 299,99",
                 newPrice: "R$ 254,99"
@@ -1757,10 +1837,19 @@
                 image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
                 description: "Os lançamentos mais esperados com preços especiais para assinantes.",
-                link: "#",
                 discount: "-10%",
                 oldPrice: "R$ 80,00",
                 newPrice: "R$ 72,00"
+            },
+            // Novo slide adicionado
+            {
+                title: "Ofertas Exclusivas",
+                image: "https://images.unsplash.com/photo-1552831388-6a0b3575b32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+                thumbnail: "https://images.unsplash.com/photo-1552831388-6a0b3575b32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                description: "Descontos imperdíveis em jogos selecionados. Aproveite!",
+                discount: "-40%",
+                oldPrice: "R$ 200,00",
+                newPrice: "R$ 120,00"
             }
         ];
         
@@ -1862,7 +1951,7 @@
             });
         }
         
-        // Renderizar miniaturas do carrossel estilo Steam com barra de progresso
+        // Renderizar miniaturas do carrossel estilo Steam com efeito de onda
         function renderSteamThumbnails() {
             const container = document.getElementById('thumbnailsList');
             container.innerHTML = '';
@@ -1875,9 +1964,6 @@
                 thumbElement.innerHTML = `
                     <div class="thumb-img" style="background-image: url('${item.thumbnail}')"></div>
                     <div class="thumb-title">${item.title}</div>
-                    <div class="progress-container">
-                        <div class="progress-bar"></div>
-                    </div>
                 `;
                 
                 thumbElement.addEventListener('click', () => {
@@ -1897,7 +1983,6 @@
             const slideDiscount = document.getElementById('slideDiscount');
             const slideOldPrice = document.getElementById('slideOldPrice');
             const slideNewPrice = document.getElementById('slideNewPrice');
-            const slideButton = document.getElementById('slideButton');
             
             // Atualizar o slide principal
             mainSlide.style.backgroundImage = `url('${slide.image}')`;
@@ -1906,7 +1991,11 @@
             slideDiscount.textContent = slide.discount;
             slideOldPrice.textContent = slide.oldPrice;
             slideNewPrice.textContent = slide.newPrice;
-            slideButton.href = slide.link;
+            
+            // Tornar todo o slide um link para o WhatsApp
+            mainSlide.onclick = function() {
+                window.open(`https://wa.me/551128620607?text=${encodeURIComponent('Olá, gostaria de saber mais sobre: ' + slide.title)}`, '_blank');
+            };
             
             // Atualizar as miniaturas ativas
             document.querySelectorAll('.thumb-item').forEach((thumb, idx) => {
@@ -1914,18 +2003,48 @@
             });
             
             // Reiniciar o temporizador automático
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
+            if (!isPaused) {
+                clearInterval(autoSlideInterval);
+                startAutoSlide();
+            }
         }
         
         let autoSlideInterval;
+        let isPaused = false;
         
         function startAutoSlide() {
             let currentIndex = 0;
+            // Encontra o índice do slide ativo
+            document.querySelectorAll('.thumb-item').forEach((thumb, idx) => {
+                if(thumb.classList.contains('active')) {
+                    currentIndex = idx;
+                }
+            });
+            
             autoSlideInterval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % carouselData.length;
                 goToSlide(currentIndex);
             }, 5000);
+        }
+        
+        // Botão de pause
+        function setupPauseButton() {
+            const pauseBtn = document.getElementById('pauseBtn');
+            pauseBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Impedir que o clique no botão dispare o link do WhatsApp
+                isPaused = !isPaused;
+                
+                const icon = this.querySelector('i');
+                if (isPaused) {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                    clearInterval(autoSlideInterval);
+                } else {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                    startAutoSlide();
+                }
+            });
         }
         
         // Menu mobile
@@ -1950,7 +2069,60 @@
                 }
             });
         });
-        
+		      // Funções para os indicadores de pontos
+        function renderIndicators() {
+            const container = document.getElementById('indicatorsContainer');
+            container.innerHTML = '';
+            
+            carouselData.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                if(index === 0) indicator.classList.add('active');
+                
+                indicator.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+                
+                container.appendChild(indicator);
+            });
+        }
+
+        // Variáveis para controle do touch
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Funções para navegação por touch
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+
+        function handleTouchMove(e) {
+            touchEndX = e.changedTouches[0].screenX;
+        }
+
+        function handleTouchEnd() {
+            const diff = touchStartX - touchEndX;
+            const absDiff = Math.abs(diff);
+            
+            // Se o movimento for maior que 50px, consideramos swipe
+            if (absDiff > 50) {
+                if (diff > 0) {
+                    // Swipe left: próxima
+                    let nextIndex = (currentSlideIndex + 1) % carouselData.length;
+                    goToSlide(nextIndex);
+                } else {
+                    // Swipe right: anterior
+                    let prevIndex = (currentSlideIndex - 1 + carouselData.length) % carouselData.length;
+                    goToSlide(prevIndex);
+                }
+            }
+        }
+           const mainSlide = document.querySelector('.main-slide');
+    if (mainSlide) {
+        mainSlide.addEventListener('touchstart', handleTouchStart, false);
+        mainSlide.addEventListener('touchmove', handleTouchMove, false);
+        mainSlide.addEventListener('touchend', handleTouchEnd, false);
+    }
         // Inicializar quando a página carregar
         window.addEventListener('DOMContentLoaded', function() {
             renderReels();
@@ -1958,7 +2130,11 @@
             renderSteamThumbnails();
             goToSlide(0); // Inicia com o primeiro slide
             startAutoSlide(); // Inicia o slide automático
-        });
+            setupPauseButton(); // Configurar o botão de pause
+        }
+	);
+		
+		
     </script>
 </body>
 </html>
