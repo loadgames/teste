@@ -1321,463 +1321,6 @@
                 grid-column: span 2;
             }
         }
-
-        /* ===== CARROSSEL MODERNO - ESTILOS APRIMORADOS ===== */
-
-        /* Container principal do carrossel */
-        .modern-carousel {
-            position: relative;
-            width: 100%;
-            margin: 40px 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Wrapper do carrossel */
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            overflow: hidden;
-            border-radius: 20px;
-        }
-
-        /* Container do track */
-        .carousel-track-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        /* Track dos slides */
-        .carousel-track {
-            display: flex;
-            width: 500%; /* 5 slides × 100% */
-            height: 100%;
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-        }
-
-        /* Slides individuais */
-        .carousel-slide {
-            position: relative;
-            width: 20%; /* 100% / 5 slides */
-            height: 100%;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Imagem do slide */
-        .slide-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transition: transform 0.8s ease;
-        }
-
-        /* Overlay do slide */
-        .slide-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(0, 0, 0, 0.7) 0%,
-                rgba(0, 0, 0, 0.4) 50%,
-                rgba(0, 0, 0, 0.8) 100%
-            );
-            z-index: 1;
-        }
-
-        /* Conteúdo do slide */
-        .slide-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-            max-width: 600px;
-            padding: 40px;
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.8s ease 0.3s;
-        }
-
-        /* Slide ativo */
-        .carousel-slide.current-slide .slide-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* Badge do slide */
-        .slide-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
-        }
-
-        /* Título do slide */
-        .slide-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(45deg, #fff, #ff6b00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Descrição do slide */
-        .slide-description {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Ações do slide */
-        .slide-actions {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Botões primário e secundário */
-        .btn-primary, .btn-secondary {
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary), #ff8533);
-            color: white;
-            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 107, 0, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: translateY(-3px);
-        }
-
-        /* Botões de navegação */
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .carousel-nav:hover {
-            background: rgba(255, 107, 0, 0.8);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
-        }
-
-        .carousel-nav-prev {
-            left: 30px;
-        }
-
-        .carousel-nav-next {
-            right: 30px;
-        }
-
-        /* Progress bar */
-        .carousel-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            z-index: 10;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), #ff8533);
-            width: 20%;
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
-        }
-
-        /* Indicadores (dots) */
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-            padding: 20px 0;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .indicator:hover {
-            background: rgba(255, 107, 0, 0.6);
-            transform: scale(1.2);
-        }
-
-        .indicator.active {
-            background: var(--primary);
-            transform: scale(1.3);
-            box-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
-        }
-
-        .indicator.active::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border: 2px solid rgba(255, 107, 0, 0.3);
-            border-radius: 50%;
-            animation: pulse-ring 2s infinite;
-        }
-
-        /* Miniaturas */
-        .carousel-thumbnails {
-            margin-top: 30px;
-            padding: 20px 0;
-            background: rgba(30, 30, 30, 0.5);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .thumbnail-track {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .thumbnail {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 15px;
-            border-radius: 12px;
-            border: 2px solid transparent;
-        }
-
-        .thumbnail:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px);
-        }
-
-        .thumbnail.active {
-            border-color: var(--primary);
-            background: rgba(255, 107, 0, 0.1);
-        }
-
-        .thumbnail img {
-            width: 80px;
-            height: 50px;
-            border-radius: 8px;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
-
-        .thumbnail:hover img {
-            transform: scale(1.1);
-        }
-
-        .thumbnail span {
-            font-size: 0.9rem;
-            color: #ddd;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .thumbnail.active span {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Animações */
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        /* Efeito parallax no slide ativo */
-        .carousel-slide.current-slide .slide-image {
-            transform: scale(1.05);
-        }
-
-        /* Responsividade do carrossel moderno */
-        @media (max-width: 992px) {
-            .carousel-wrapper {
-                height: 500px;
-            }
-            
-            .slide-title {
-                font-size: 2.8rem;
-            }
-            
-            .slide-description {
-                font-size: 1.1rem;
-            }
-            
-            .carousel-nav {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            
-            .carousel-nav-prev {
-                left: 20px;
-            }
-            
-            .carousel-nav-next {
-                right: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .carousel-wrapper {
-                height: 400px;
-            }
-            
-            .slide-content {
-                padding: 20px;
-                max-width: 90%;
-            }
-            
-            .slide-title {
-                font-size: 2.2rem;
-            }
-            
-            .slide-description {
-                font-size: 1rem;
-            }
-            
-            .slide-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                max-width: 250px;
-            }
-            
-            .thumbnail-track {
-                gap: 10px;
-            }
-            
-            .thumbnail img {
-                width: 60px;
-                height: 40px;
-            }
-            
-            .thumbnail span {
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .carousel-wrapper {
-                height: 350px;
-            }
-            
-            .slide-title {
-                font-size: 1.8rem;
-            }
-            
-            .slide-description {
-                font-size: 0.9rem;
-            }
-            
-            .carousel-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .carousel-nav-prev {
-                left: 15px;
-            }
-            
-            .carousel-nav-next {
-                right: 15px;
-            }
-            
-            .carousel-thumbnails {
-                display: none; /* Ocultar miniaturas em telas muito pequenas */
-            }
-        }
     </style>
 </head>
 <body>
@@ -1821,140 +1364,69 @@
         </div>
     </section>
 
-    <!-- Carousel Section - ESTRUTURA APRIMORADA -->
+    <!-- Carousel Section -->
     <section class="carousel-section">
         <div class="container">
-            <div class="modern-carousel" id="modernCarousel">
-                <!-- Wrapper principal -->
-                <div class="carousel-wrapper">
-                    <!-- Track dos slides -->
-                    <div class="carousel-track-container">
-                        <div class="carousel-track" id="carouselTrack">
-                            <!-- Slide 1 -->
-                            <div class="carousel-slide current-slide" data-slide="0">
-                                <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-                                <div class="slide-overlay"></div>
-                                <div class="slide-content">
-                                    <div class="slide-badge">Promoção</div>
-                                    <h3 class="slide-title">Promoção de Verão</h3>
-                                    <p class="slide-description">Aproveite os melhores preços em jogos e acessórios nesta temporada de verão!</p>
-                                    <div class="slide-actions">
-                                        <a href="#" class="btn-primary">Ver Ofertas</a>
-                                        <a href="#" class="btn-secondary">Saiba Mais</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Slide 2 -->
-                            <div class="carousel-slide" data-slide="1">
-                                <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-                                <div class="slide-overlay"></div>
-                                <div class="slide-content">
-                                    <div class="slide-badge">Novo</div>
-                                    <h3 class="slide-title">PlayStation 5 Disponível</h3>
-                                    <p class="slide-description">Consoles PlayStation 5 disponíveis com frete grátis para todo Brasil!</p>
-                                    <div class="slide-actions">
-                                        <a href="#" class="btn-primary">Comprar Agora</a>
-                                        <a href="#" class="btn-secondary">Ver Detalhes</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Slide 3 -->
-                            <div class="carousel-slide" data-slide="2">
-                                <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-                                <div class="slide-overlay"></div>
-                                <div class="slide-content">
-                                    <div class="slide-badge">Destaque</div>
-                                    <h3 class="slide-title">Coleção Nintendo</h3>
-                                    <p class="slide-description">Os melhores jogos e acessórios para seu Nintendo Switch com descontos especiais.</p>
-                                    <div class="slide-actions">
-                                        <a href="#" class="btn-primary">Ver Produtos</a>
-                                        <a href="#" class="btn-secondary">Catálogo</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Slide 4 -->
-                            <div class="carousel-slide" data-slide="3">
-                                <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-                                <div class="slide-overlay"></div>
-                                <div class="slide-content">
-                                    <div class="slide-badge">Premium</div>
-                                    <h3 class="slide-title">Acessórios Premium</h3>
-                                    <p class="slide-description">Headsets, controles e periféricos de alta qualidade com garantia de 1 ano.</p>
-                                    <div class="slide-actions">
-                                        <a href="#" class="btn-primary">Conhecer</a>
-                                        <a href="#" class="btn-secondary">Garantia</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Slide 5 -->
-                            <div class="carousel-slide" data-slide="4">
-                                <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
-                                <div class="slide-overlay"></div>
-                                <div class="slide-content">
-                                    <div class="slide-badge">Lançamento</div>
-                                    <h3 class="slide-title">Jogos em Destaque</h3>
-                                    <p class="slide-description">Os lançamentos mais esperados com preços especiais para assinantes.</p>
-                                    <div class="slide-actions">
-                                        <a href="#" class="btn-primary">Ver Catálogo</a>
-                                        <a href="#" class="btn-secondary">Assinar</a>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="carousel-container">
+                <!-- Miniaturas -->
+                <div class="carousel-thumbnails" id="thumbnails">
+                    <!-- Miniaturas serão geradas pelo JavaScript -->
+                </div>
+                
+                <!-- Slides principais -->
+                <div class="carousel" id="carousel">
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+                        <div class="carousel-overlay"></div>
+                        <div class="carousel-content">
+                            <h3>Promoção de Verão</h3>
+                            <p>Aproveite os melhores preços em jogos e acessórios nesta temporada de verão!</p>
+                            <a href="#" class="btn">Ver Ofertas</a>
                         </div>
                     </div>
                     
-                    <!-- Botões de navegação -->
-                    <button class="carousel-nav carousel-nav-prev" id="carouselPrev" aria-label="Slide anterior">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-nav carousel-nav-next" id="carouselNext" aria-label="Próximo slide">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+                        <div class="carousel-overlay"></div>
+                        <div class="carousel-content">
+                            <h3>Novo Estoque PS5</h3>
+                            <p>Consoles PlayStation 5 disponíveis com frete grátis para todo Brasil!</p>
+                            <a href="#" class="btn">Comprar Agora</a>
+                        </div>
+                    </div>
                     
-                    <!-- Progress bar -->
-                    <div class="carousel-progress">
-                        <div class="progress-bar" id="progressBar"></div>
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+                        <div class="carousel-overlay"></div>
+                        <div class="carousel-content">
+                            <h3>Coleção Nintendo</h3>
+                            <p>Os melhores jogos e acessórios para seu Nintendo Switch com descontos especiais.</p>
+                            <a href="#" class="btn">Ver Produtos</a>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+                        <div class="carousel-overlay"></div>
+                        <div class="carousel-content">
+                            <h3>Acessórios Premium</h3>
+                            <p>Headsets, controles e periféricos de alta qualidade com garantia de 1 ano.</p>
+                            <a href="#" class="btn">Conhecer</a>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+                        <div class="carousel-overlay"></div>
+                        <div class="carousel-content">
+                            <h3>Jogos em Destaque</h3>
+                            <p>Os lançamentos mais esperados com preços especiais para assinantes.</p>
+                            <a href="#" class="btn">Ver Catálogo</a>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Indicadores (dots) -->
-                <div class="carousel-indicators" id="carouselIndicators">
-                    <button class="indicator active" data-slide="0" aria-label="Ir para slide 1"></button>
-                    <button class="indicator" data-slide="1" aria-label="Ir para slide 2"></button>
-                    <button class="indicator" data-slide="2" aria-label="Ir para slide 3"></button>
-                    <button class="indicator" data-slide="3" aria-label="Ir para slide 4"></button>
-                    <button class="indicator" data-slide="4" aria-label="Ir para slide 5"></button>
-                </div>
-                
-                <!-- Miniaturas (opcional) -->
-                <div class="carousel-thumbnails" id="carouselThumbnails">
-                    <div class="thumbnail-track">
-                        <div class="thumbnail active" data-slide="0">
-                            <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Promoção de Verão">
-                            <span>Promoção de Verão</span>
-                        </div>
-                        <div class="thumbnail" data-slide="1">
-                            <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="PlayStation 5">
-                            <span>PlayStation 5</span>
-                        </div>
-                        <div class="thumbnail" data-slide="2">
-                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Nintendo">
-                            <span>Nintendo</span>
-                        </div>
-                        <div class="thumbnail" data-slide="3">
-                            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Acessórios">
-                            <span>Acessórios</span>
-                        </div>
-                        <div class="thumbnail" data-slide="4">
-                            <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Jogos">
-                            <span>Jogos</span>
-                        </div>
-                    </div>
-                </div>
+                <button class="carousel-btn carousel-prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn carousel-next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -2314,452 +1786,25 @@
                 title: "Acessórios Premium",
                 image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
                 thumbnail: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                description: "Headsets, contr        // ===== CARROSSEL MODERNO - JAVASCRIPT APRIMORADO =====
-
-        class ModernCarousel {
-            constructor(carouselElement) {
-                this.carousel = carouselElement;
-                this.track = this.carousel.querySelector('.carousel-track');
-                this.slides = Array.from(this.track.children);
-                this.nextButton = this.carousel.querySelector('.carousel-nav-next');
-                this.prevButton = this.carousel.querySelector('.carousel-nav-prev');
-                this.indicators = Array.from(this.carousel.querySelectorAll('.indicator'));
-                this.thumbnails = Array.from(this.carousel.querySelectorAll('.thumbnail'));
-                this.progressBar = this.carousel.querySelector('.progress-bar');
-                
-                this.currentSlideIndex = 0;
-                this.slideWidth = this.slides[0].getBoundingClientRect().width;
-                this.autoplayInterval = null;
-                this.autoplayDelay = 5000; // 5 segundos
-                this.isPlaying = true;
-                this.touchStartX = 0;
-                this.touchEndX = 0;
-                
-                this.init();
-            }
-            
-            init() {
-                this.setupSlides();
-                this.setupEventListeners();
-                this.startAutoplay();
-                this.updateProgressBar();
-                
-                // Configurar acessibilidade
-                this.setupAccessibility();
-                
-                // Configurar lazy loading
-                this.setupLazyLoading();
-            }
-            
-            setupSlides() {
-                // Posicionar slides
-                this.slides.forEach((slide, index) => {
-                    slide.style.left = `${this.slideWidth * index}px`;
-                });
-            }
-            
-            setupEventListeners() {
-                // Botões de navegação
-                this.nextButton.addEventListener('click', () => this.nextSlide());
-                this.prevButton.addEventListener('click', () => this.prevSlide());
-                
-                // Indicadores
-                this.indicators.forEach((indicator, index) => {
-                    indicator.addEventListener('click', () => this.goToSlide(index));
-                });
-                
-                // Miniaturas
-                this.thumbnails.forEach((thumbnail, index) => {
-                    thumbnail.addEventListener('click', () => this.goToSlide(index));
-                });
-                
-                // Pause no hover
-                this.carousel.addEventListener('mouseenter', () => this.pauseAutoplay());
-                this.carousel.addEventListener('mouseleave', () => this.resumeAutoplay());
-                
-                // Touch/swipe support
-                this.carousel.addEventListener('touchstart', (e) => this.handleTouchStart(e));
-                this.carousel.addEventListener('touchend', (e) => this.handleTouchEnd(e));
-                
-                // Keyboard navigation
-                document.addEventListener('keydown', (e) => this.handleKeydown(e));
-                
-                // Resize handler
-                window.addEventListener('resize', () => this.handleResize());
-                
-                // Visibility change (pause quando tab não está ativa)
-                document.addEventListener('visibilitychange', () => {
-                    if (document.hidden) {
-                        this.pauseAutoplay();
-                    } else {
-                        this.resumeAutoplay();
-                    }
-                });
-            }
-            
-            setupAccessibility() {
-                // Adicionar ARIA labels
-                this.slides.forEach((slide, index) => {
-                    slide.setAttribute('aria-label', `Slide ${index + 1} de ${this.slides.length}`);
-                    slide.setAttribute('role', 'tabpanel');
-                });
-                
-                this.track.setAttribute('role', 'tablist');
-                this.carousel.setAttribute('aria-live', 'polite');
-            }
-            
-            setupLazyLoading() {
-                // Implementar lazy loading para imagens
-                this.slides.forEach((slide, index) => {
-                    const img = slide.querySelector('.slide-image');
-                    if (img && index > 0) {
-                        const bgImage = img.style.backgroundImage;
-                        img.style.backgroundImage = '';
-                        img.dataset.bgImage = bgImage;
-                    }
-                });
-            }
-            
-            loadSlideImage(index) {
-                const slide = this.slides[index];
-                const img = slide.querySelector('.slide-image');
-                if (img && img.dataset.bgImage) {
-                    img.style.backgroundImage = img.dataset.bgImage;
-                    delete img.dataset.bgImage;
-                }
-            }
-            
-            nextSlide() {
-                const nextIndex = (this.currentSlideIndex + 1) % this.slides.length;
-                this.goToSlide(nextIndex);
-            }
-            
-            prevSlide() {
-                const prevIndex = this.currentSlideIndex === 0 
-                    ? this.slides.length - 1 
-                    : this.currentSlideIndex - 1;
-                this.goToSlide(prevIndex);
-            }
-            
-            goToSlide(targetIndex) {
-                if (targetIndex === this.currentSlideIndex) return;
-                
-                const currentSlide = this.slides[this.currentSlideIndex];
-                const targetSlide = this.slides[targetIndex];
-                
-                // Remover classe ativa do slide atual
-                currentSlide.classList.remove('current-slide');
-                
-                // Adicionar classe ativa ao slide alvo
-                targetSlide.classList.add('current-slide');
-                
-                // Mover o track
-                const amountToMove = targetIndex * this.slideWidth;
-                this.track.style.transform = `translateX(-${amountToMove}px)`;
-                
-                // Atualizar indicadores
-                this.updateIndicators(targetIndex);
-                
-                // Atualizar miniaturas
-                this.updateThumbnails(targetIndex);
-                
-                // Carregar imagem do próximo slide
-                this.loadSlideImage(targetIndex);
-                
-                // Pré-carregar slides adjacentes
-                this.preloadAdjacentSlides(targetIndex);
-                
-                // Atualizar índice atual
-                this.currentSlideIndex = targetIndex;
-                
-                // Atualizar progress bar
-                this.updateProgressBar();
-                
-                // Reiniciar autoplay
-                this.restartAutoplay();
-            }
-            
-            updateIndicators(targetIndex) {
-                this.indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === targetIndex);
-                });
-            }
-            
-            updateThumbnails(targetIndex) {
-                this.thumbnails.forEach((thumbnail, index) => {
-                    thumbnail.classList.toggle('active', index === targetIndex);
-                });
-            }
-            
-            updateProgressBar() {
-                const progress = ((this.currentSlideIndex + 1) / this.slides.length) * 100;
-                this.progressBar.style.width = `${progress}%`;
-            }
-            
-            preloadAdjacentSlides(currentIndex) {
-                const nextIndex = (currentIndex + 1) % this.slides.length;
-                const prevIndex = currentIndex === 0 ? this.slides.length - 1 : currentIndex - 1;
-                
-                this.loadSlideImage(nextIndex);
-                this.loadSlideImage(prevIndex);
-            }
-            
-            startAutoplay() {
-                if (!this.isPlaying) return;
-                
-                this.autoplayInterval = setInterval(() => {
-                    this.nextSlide();
-                }, this.autoplayDelay);
-            }
-            
-            pauseAutoplay() {
-                if (this.autoplayInterval) {
-                    clearInterval(this.autoplayInterval);
-                    this.autoplayInterval = null;
-                }
-            }
-            
-            resumeAutoplay() {
-                if (this.isPlaying && !this.autoplayInterval) {
-                    this.startAutoplay();
-                }
-            }
-            
-            restartAutoplay() {
-                this.pauseAutoplay();
-                this.resumeAutoplay();
-            }
-            
-            toggleAutoplay() {
-                this.isPlaying = !this.isPlaying;
-                if (this.isPlaying) {
-                    this.startAutoplay();
-                } else {
-                    this.pauseAutoplay();
-                }
-            }
-            
-            handleTouchStart(e) {
-                this.touchStartX = e.changedTouches[0].screenX;
-            }
-            
-            handleTouchEnd(e) {
-                this.touchEndX = e.changedTouches[0].screenX;
-                this.handleSwipe();
-            }
-            
-            handleSwipe() {
-                const swipeThreshold = 50;
-                const diff = this.touchStartX - this.touchEndX;
-                
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
-                        // Swipe left - próximo slide
-                        this.nextSlide();
-                    } else {
-                        // Swipe right - slide anterior
-                        this.prevSlide();
-                    }
-                }
-            }
-            
-            handleKeydown(e) {
-                // Verificar se o carrossel está em foco
-                if (!this.carousel.contains(document.activeElement)) return;
-                
-                switch (e.key) {
-                    case 'ArrowLeft':
-                        e.preventDefault();
-                        this.prevSlide();
-                        break;
-                    case 'ArrowRight':
-                        e.preventDefault();
-                        this.nextSlide();
-                        break;
-                    case ' ':
-                        e.preventDefault();
-                        this.toggleAutoplay();
-                        break;
-                    case 'Home':
-                        e.preventDefault();
-                        this.goToSlide(0);
-                        break;
-                    case 'End':
-                        e.preventDefault();
-                        this.goToSlide(this.slides.length - 1);
-                        break;
-                }
-            }
-            
-            handleResize() {
-                // Recalcular largura dos slides
-                this.slideWidth = this.slides[0].getBoundingClientRect().width;
-                this.setupSlides();
-                
-                // Reposicionar para o slide atual
-                const amountToMove = this.currentSlideIndex * this.slideWidth;
-                this.track.style.transform = `translateX(-${amountToMove}px)`;
-            }
-            
-            destroy() {
-                // Limpar event listeners e intervals
-                this.pauseAutoplay();
-                // Remover todos os event listeners seria necessário aqui
-                // para uma implementação completa
-            }
-        }
-
-        // ===== SCRIPTS ORIGINAIS MANTIDOS =====
-
-        // Dados dos reels e posts
-        const reelsData = [
-            {
-                thumbnail: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-                title: 'Unboxing PS5 Slim',
-                views: '15.2K',
-                likes: '892'
+                description: "Headsets, controles e periféricos de alta qualidade com garantia de 1 ano.",
+                link: "#"
             },
             {
-                thumbnail: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-                title: 'Top 5 Jogos 2024',
-                views: '23.1K',
-                likes: '1.5K'
-            },
-            {
-                thumbnail: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-                title: 'Nintendo Switch OLED',
-                views: '8.7K',
-                likes: '654'
-            },
-            {
-                thumbnail: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-                title: 'Setup Gamer 2024',
-                views: '31.4K',
-                likes: '2.1K'
+                title: "Jogos em Destaque",
+                image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+                thumbnail: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+                description: "Os lançamentos mais esperados com preços especiais para assinantes.",
+                link: "#"
             }
         ];
-
-        const postsData = [
-            {
-                thumbnail: 'https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-                title: 'Promoção de Verão',
-                likes: '1.2K',
-                comments: '89'
-            },
-            {
-                thumbnail: 'https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-                title: 'Novos Lançamentos',
-                likes: '956',
-                comments: '67'
-            },
-            {
-                thumbnail: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-                title: 'Dicas de Gaming',
-                likes: '743',
-                comments: '45'
-            },
-            {
-                thumbnail: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-                title: 'Review Xbox Series X',
-                likes: '1.8K',
-                comments: '123'
-            }
-        ];
-
-        // Funções para renderizar conteúdo
-        function renderReels() {
-            const container = document.getElementById('reels-container');
-            container.innerHTML = reelsData.map(reel => `
-                <div class="reel-item">
-                    <div class="reel-thumbnail" style="background-image: url('${reel.thumbnail}')">
-                        <div class="reel-overlay"></div>
-                    </div>
-                    <div class="reel-content">
-                        <div class="reel-title">${reel.title}</div>
-                        <div class="reel-stats">
-                            <div class="reel-stat">
-                                <i class="fas fa-play"></i>
-                                <span>${reel.views}</span>
-                            </div>
-                            <div class="reel-stat">
-                                <i class="fas fa-heart"></i>
-                                <span>${reel.likes}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderPosts() {
-            const container = document.getElementById('posts-container');
-            container.innerHTML = postsData.map(post => `
-                <div class="post-item">
-                    <div class="post-thumbnail" style="background-image: url('${post.thumbnail}')">
-                        <div class="post-overlay">
-                            <i class="far fa-image"></i>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-title">${post.title}</div>
-                        <div class="post-stats">
-                            <div class="post-stat">
-                                <i class="fas fa-heart"></i>
-                                <span>${post.likes}</span>
-                            </div>
-                            <div class="post-stat">
-                                <i class="fas fa-comment"></i>
-                                <span>${post.comments}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Funções de utilidade
-        function showContactCard() {
-            document.getElementById('contactCard').classList.add('show');
-        }
-
-        function hideContactCard() {
-            document.getElementById('contactCard').classList.remove('show');
-        }
-
-        function saveContact() {
-            const contact = {
-                name: 'Load Games',
-                phone: '+551128620607',
-                email: 'contato@loadgames.com.br',
-                website: 'https://linktr.ee/loadgamesoficial'
-            };
-
-            const vCard = `BEGIN:VCARD
-VERSION:3.0
-FN:${contact.name}
-TEL:${contact.phone}
-EMAIL:${contact.email}
-URL:${contact.website}
-END:VCARD`;
-
-            const blob = new Blob([vCard], { type: 'text/vcard' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'load-games-contato.vcf';
-            a.click();
-            window.URL.revokeObjectURL(url);
-
-            showNotification('Contato salvo com sucesso!');
-            hideContactCard();
-        }
-
+        
+        // Funções para interatividade
         function copyToClipboard(text, message) {
             navigator.clipboard.writeText(text).then(() => {
-                showNotification(message || 'Texto copiado!');
+                showNotification(message);
             });
         }
-
+        
         function showNotification(message) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
@@ -2770,39 +1815,191 @@ END:VCARD`;
             }, 3000);
         }
 
+        // Funções do modal de contato
+        function showContactCard() {
+            document.getElementById('contactCard').classList.add('show');
+        }
+        
+        function hideContactCard() {
+            document.getElementById('contactCard').classList.remove('show');
+        }
+        
+        function saveContact() {
+            showNotification('Contato salvo com sucesso!');
+            setTimeout(hideContactCard, 1500);
+        }
+        
+        // Renderizar reels e posts
+        function renderReels() {
+            const container = document.getElementById('reels-container');
+            container.innerHTML = '';
+            
+            reelsData.forEach(reel => {
+                const reelElement = document.createElement('div');
+                reelElement.className = 'reel-item';
+                reelElement.innerHTML = `
+                    <div class="reel-thumbnail" style="background-image: url('${reel.imageUrl}')">
+                        <div class="reel-overlay"></div>
+                    </div>
+                    <div class="reel-content">
+                        <div class="reel-title">${reel.title}</div>
+                        <div class="reel-stats">
+                            <div class="reel-stat">
+                                <i class="fas fa-heart"></i> ${reel.likes}
+                            </div>
+                            <div class="reel-stat">
+                                <i class="fas fa-comment"></i> ${reel.comments}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                reelElement.addEventListener('click', () => {
+                    window.open(reel.postUrl, '_blank');
+                });
+                
+                container.appendChild(reelElement);
+            });
+        }
+        
+        function renderPosts() {
+            const container = document.getElementById('posts-container');
+            container.innerHTML = '';
+            
+            postsData.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post-item';
+                postElement.innerHTML = `
+                    <div class="post-thumbnail" style="background-image: url('${post.imageUrl}')">
+                        <div class="post-overlay">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-title">${post.title}</div>
+                        <div class="post-stats">
+                            <div class="post-stat">
+                                <i class="fas fa-heart"></i> ${post.likes}
+                            </div>
+                            <div class="post-stat">
+                                <i class="fas fa-comment"></i> ${post.comments}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                postElement.addEventListener('click', () => {
+                    window.open(post.postUrl, '_blank');
+                });
+                
+                container.appendChild(postElement);
+            });
+        }
+        
+        // Renderizar miniaturas do carrossel
+        function renderThumbnails() {
+            const container = document.getElementById('thumbnails');
+            container.innerHTML = '';
+            
+            carouselData.forEach((item, index) => {
+                const thumbElement = document.createElement('div');
+                thumbElement.className = 'thumbnail-item';
+                if(index === 0) thumbElement.classList.add('active');
+                
+                thumbElement.innerHTML = `
+                    <div class="thumbnail-img" style="background-image: url('${item.thumbnail}')"></div>
+                    <div class="thumbnail-title">${item.title}</div>
+                    <div class="progress-bar"></div>
+                `;
+                
+                thumbElement.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+                
+                container.appendChild(thumbElement);
+            });
+        }
+        
         // Menu mobile
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             document.querySelector('nav ul').classList.toggle('active');
         });
-
-        // Smooth scroll para links internos
+        
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
+                
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
                     });
+                    
+                    // Fechar menu mobile após clicar em um link
+                    document.querySelector('nav ul').classList.remove('active');
                 }
             });
         });
-
+        
+        // Carrossel
+        let currentIndex = 0;
+        let autoSlideInterval;
+        const carousel = document.getElementById('carousel');
+        const totalItems = carouselData.length;
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Atualizar miniaturas ativas
+            document.querySelectorAll('.thumbnail-item').forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentIndex);
+                
+                // Reiniciar a barra de progresso
+                const progressBar = thumb.querySelector('.progress-bar');
+                progressBar.style.width = '0';
+                
+                if(index === currentIndex) {
+                    // Iniciar animação da barra de progresso
+                    progressBar.style.transition = 'width 5s linear';
+                    setTimeout(() => {
+                        progressBar.style.width = '100%';
+                    }, 10);
+                }
+            });
+            
+            // Reiniciar o temporizador automático
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            }, 5000);
+        }
+        
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateCarousel();
+        });
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        });
+        
         // Inicializar quando a página carregar
         window.addEventListener('DOMContentLoaded', function() {
             renderReels();
             renderPosts();
-            
-            // Inicializar carrossel moderno
-            const carouselElement = document.getElementById('modernCarousel');
-            if (carouselElement) {
-                const carousel = new ModernCarousel(carouselElement);
-                
-                // Expor globalmente para debug (opcional)
-                window.modernCarousel = carousel;
-            }
-        });   </script>
+            renderThumbnails();
+            updateCarousel();
+        });
+    </script>
 </body>
 </html>
 
